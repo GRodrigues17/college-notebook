@@ -1,0 +1,40 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_subject_fields"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <include android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        layout="@layout/dialog_header" />
+
+    <EditText
+        android:id="@+id/edt_subject_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/header"
+        android:hint="subject Name"/>
+
+    <EditText
+        android:id="@+id/edt_professor_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="professor's name"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/edt_subject_name"
+        android:imeOptions="actionDone" />
+
+    <include layout="@layout/dialog_buttons"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/edt_professor_name"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rect_button">
+
+    <View android:id="@+id/viewColor"
+        android:layout_width="5dp"
+        android:layout_alignParentLeft="true"
+        android:layout_height="75dp"/>
+
+    <ImageView
+        android:id="@+id/img_notebook"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:background="@drawable/round_image"
+        android:layout_margin="10dp"
+        android:src="@mipmap/ic_book_white"
+        android:scaleType="centerInside"/>
+
+    <TextView
+        android:id="@+id/professor_name"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:text="Nome"
+        android:textAlignment="center"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:textColor="@color/colorSub"
+        android:textSize="16dp"/>
+
+    <TextView
+        android:id="@+id/class_name"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionMode.Title"
+        android:ellipsize="end"
+        android:textSize="18dp"
+        android:layout_marginTop="20dp"
+        android:layout_toEndOf="@id/img_notebook"
+        android:textColor="@color/colorText"
+        android:layout_centerVertical="true" />
+
+
+</RelativeLayout>
