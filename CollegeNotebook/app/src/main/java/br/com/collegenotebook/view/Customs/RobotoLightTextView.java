@@ -9,27 +9,27 @@ import android.widget.TextView;
  * Created by GRodrigues17 on 04/10/2016.
  */
 
-public class RobotoRegularTextView extends TextView{
-    public RobotoRegularTextView(Context context) {
+public class RobotoLightTextView extends TextView{
+    public RobotoLightTextView(Context context) {
         super(context);
 
         applyCustomFont(context);
     }
 
-    public RobotoRegularTextView(Context context, AttributeSet attrs) {
+    public RobotoLightTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         applyCustomFont(context);
     }
 
-    public RobotoRegularTextView(Context context, AttributeSet attrs, int defStyle) {
+    public RobotoLightTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
         applyCustomFont(context);
     }
 
     private void applyCustomFont(Context context) {
-        Typeface customFont = FontCache.getTypeface("fonts/Roboto-Regular.ttf", context);
+        Typeface customFont = FontCache.getTypeface("fonts/Roboto-Light.ttf", context);
         setTypeface(customFont);
     }
 }

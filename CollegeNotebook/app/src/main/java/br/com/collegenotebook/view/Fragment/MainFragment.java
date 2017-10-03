@@ -124,7 +124,7 @@ public class MainFragment extends Fragment implements EditNameDialogListener,Cre
                                 int pos = aux.indexOf(itemSelecionado);
 
                                 if (pos != -1) {
-                                    baseController.deletaRegistro(itemSelecionado);
+                                    baseController.deleteSubject(itemSelecionado);
 
                                 }
                             }
@@ -222,7 +222,7 @@ public class MainFragment extends Fragment implements EditNameDialogListener,Cre
     public void onFinishEditDialog(Materia materia) {
         this.baseController.open();
 
-        this.baseController.insereDado(materia);
+        this.baseController.insertSubject(materia);
         this.adapter.add(materia);
         this.adapter.notifyDataSetChanged();
         this.readRecords();

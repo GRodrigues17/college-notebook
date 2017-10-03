@@ -25,5 +25,36 @@
         <item name="android:outlineProvider">bounds</item>
     </style>
 
+    <style name="MyEditText" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@android:color/background_light</item>
+        <item name="colorControlActivated">@android:color/background_light</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="EditTextNewUser" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/colorItem</item>
+        <item name="colorControlActivated">@color/colorRound</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="LoginTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@mipmap/login_screen</item>
+    </style>
+
+    <style name="MyErrorText" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@color/colorRed</item>
+        <item name="android:width">200dp</item>
+        <item name="android:textSize">10dp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="YourTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+
 
 </resources>

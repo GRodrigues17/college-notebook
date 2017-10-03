@@ -24,27 +24,20 @@ public class SplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
-        new Handler().postDelayed(new Runnable() {
-            /*
-             * Exibindo splash com um timer.
-             */
+        Handler handle = new Handler();
+        handle.postDelayed(new Runnable() {
             @Override
             public void run() {
-                // Esse método será executado sempre que o timer acabar
-                // E inicia a activity principal
-                Intent i = new Intent(SplashActivity.this, MainActivity.class);
-                startActivity(i);
-
-                // Fecha esta activity
-                finish();
+                mostrarLogin();
             }
-        }, SPLASH_TIME_OUT);
+        }, 2000);
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
+    private void mostrarLogin() {
+        Intent intent = new Intent(SplashActivity.this,
+                LoginActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         finish();
     }
 }

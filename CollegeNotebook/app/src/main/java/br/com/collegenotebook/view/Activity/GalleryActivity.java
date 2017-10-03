@@ -1,6 +1,7 @@
 package br.com.collegenotebook.view.Activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.PersistableBundle;
@@ -48,9 +49,11 @@ public class GalleryActivity extends AppCompatActivity implements CreateDirector
                 onBackPressed();
             }
         });
-
         mainController = new MainController(this);
-        nomeMateria = getIntent().getStringExtra("nome_materia");
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        String nomeMateria = bundle.getString("nome_materia");
+
         testando(nomeMateria);
 
     }
@@ -72,8 +75,9 @@ public class GalleryActivity extends AppCompatActivity implements CreateDirector
         mainController.criaDiretorio(nomeMateria);
 
         //Procura o diretório específico da matéria
-        File file;
+
         String root_sd = Environment.getExternalStorageDirectory().toString();
+        File file;
         file = new File( root_sd +"/CollegeNotebook"+ "/" + nomeMateria) ;
         File list[] = file.listFiles();
 

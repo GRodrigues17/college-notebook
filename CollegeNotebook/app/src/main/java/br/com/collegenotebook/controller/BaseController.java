@@ -11,6 +11,7 @@ import java.util.List;
 
 import br.com.collegenotebook.dao.BaseDAO;
 import br.com.collegenotebook.model.Materia;
+import br.com.collegenotebook.model.User;
 
 /**
  * Created by GRodrigues17 on 27/09/2016.
@@ -19,7 +20,8 @@ public class BaseController {
 
     private SQLiteDatabase db;
     private BaseDAO banco;
-    Cursor cursor;
+    Cursor cursorSubject;
+    User user;
 
 
     public BaseController(Context context){
@@ -35,7 +37,7 @@ public class BaseController {
         banco.close();
     }
 
-    public boolean insereDado(Materia materia) {
+    public boolean insertSubject(Materia materia) {
         if (!verifyIfSubjectExists(materia)) {
             ContentValues values = new ContentValues();
             values.put(BaseDAO.MATERIA_NOME, materia.getNome());
@@ -54,26 +56,25 @@ public class BaseController {
         open();
         List<Materia> materias = new ArrayList<Materia>();
         String sqlQuery = "SELECT * FROM "+BaseDAO.TABLE_MATERIA+" ORDER BY "+BaseDAO.ID+" ASC;";
-        cursor = db.rawQuery(sqlQuery, null);
-        if  (cursor != null && cursor.moveToFirst()) {
-            while(cursor.moveToNext()) {
+        cursorSubject = db.rawQuery(sqlQuery, null);
+        if  (cursorSubject != null && cursorSubject.moveToFirst()) {
+            while(cursorSubject.moveToNext()) {
 
-                Materia user = new Materia(cursor.getLong(cursor.getColumnIndex(BaseDAO.ID)),
-                        cursor.getString(cursor.getColumnIndex(BaseDAO.MATERIA_NOME)),
-                        cursor.getString(cursor.getColumnIndex(BaseDAO.MATERIA_PROFESSOR)),
-                        cursor.getString(cursor.getColumnIndex(BaseDAO.MATERIA_PASTA)));
+                Materia user = new Materia(cursorSubject.getLong(cursorSubject.getColumnIndex(BaseDAO.ID)),
+                        cursorSubject.getString(cursorSubject.getColumnIndex(BaseDAO.MATERIA_NOME)),
+                        cursorSubject.getString(cursorSubject.getColumnIndex(BaseDAO.MATERIA_PROFESSOR)),
+                        cursorSubject.getString(cursorSubject.getColumnIndex(BaseDAO.MATERIA_PASTA)));
                 materias.add(user);
 
             }
         }
-        cursor.close();
+        cursorSubject.close();
         close();
 
         return materias;
     }
 
-
-    public void deletaRegistro(Materia materia) {
+    public void deleteSubject(Materia materia) {
         open();
         long id = materia.getId();
         db.delete(BaseDAO.TABLE_MATERIA, BaseDAO.ID + " = " + id, null);
@@ -84,14 +85,54 @@ public class BaseController {
         open();
         String nome = materia.getNome();
         String Query = "SELECT * FROM " +BaseDAO.TABLE_MATERIA+ " WHERE " +BaseDAO.MATERIA_NOME+ "= '" + nome +"'";
-        cursor = db.rawQuery(Query, null);
-        cursor.moveToLast();
-        if(cursor.getCount() <= 0){
+        cursorSubject = db.rawQuery(Query, null);
+        cursorSubject.moveToLast();
+        if(cursorSubject.getCount() <= 0){
             return false;
         }
         return true;
     }
 
 
+    public boolean insertUser(User user) {
+        open();
+        // if (!verifyIfUserExists(user)) {
+        ContentValues values = new ContentValues();
+        values.put(BaseDAO.USER_EMAIL, user.getUserEmail());
+        values.put(BaseDAO.USER_NAME, user.getUserName());
+        values.put(BaseDAO.USER_PASSWORD, user.getUserPassword());
+        values.put(BaseDAO.USER_PHOTO, user.getUserPhoto());
+
+        boolean userSuccessful = db.insert(BaseDAO.TABLE_USER, null, values) > 0;
+        return userSuccessful;
+
+    }
+
+
+    public  boolean verifyIfUserExists(User user) {
+        open();
+        String emailUser = user.getUserName();
+        String Query = "SELECT * FROM " +BaseDAO.TABLE_USER+ " WHERE " +BaseDAO.USER_EMAIL+ "= '" + emailUser +"'";
+        Cursor cursorUser = db.rawQuery(Query, null);
+        cursorUser.moveToLast();
+        if(cursorUser.getCount() <= 0){
+            return false;
+        }
+        return true;
+    }
+
+    public String getSinlgeEntry(String userName)
+    {
+        Cursor cursor=db.query(BaseDAO.TABLE_USER, null, " userEmail=?", new String[]{userName}, null, null, null);
+        if(cursor.getCount()<1) // UserName Not Exist
+        {
+            cursor.close();
+            return "NOT EXIST";
+        }
+        cursor.moveToFirst();
+        String password= cursor.getString(cursor.getColumnIndex(BaseDAO.USER_PASSWORD));
+        cursor.close();
+        return password;
+    }
 
 }

@@ -18,12 +18,12 @@ public class CustomFontUtils {
     public static void applyCustomFont(TextView customFontTextView, Context context, AttributeSet attrs) {
         TypedArray attributeArray = context.obtainStyledAttributes(
                 attrs,
-                R.styleable.RobotoRegularTextView);
+                R.styleable.MontserratRegularTextView);
 
-        String fontName = attributeArray.getString(R.styleable.RobotoRegularTextView_font);
+        String fontName = attributeArray.getString(R.styleable.MontserratRegularTextView_font);
 
         // check if a special textStyle was used (e.g. extra bold)
-        int textStyle = attributeArray.getInt(R.styleable.RobotoRegularTextView_textStyle, 0);
+        int textStyle = attributeArray.getInt(R.styleable.MontserratRegularTextView_font, 0);
 
         // if nothing extra was used, fall back to regular android:textStyle parameter
         if (textStyle == 0) {
@@ -37,34 +37,24 @@ public class CustomFontUtils {
     }
 
     private static Typeface selectTypeface(Context context, String fontName, int textStyle) {
-        if (fontName.contentEquals(context.getString(R.string.font_roboto_medium))) {
-            return FontCache.getTypeface("Roboto-Italic.ttf", context);
+        if (fontName.contentEquals(context.getString(R.string.font_montserrat))) {
+            return FontCache.getTypeface("Montserrat-Regular.ttf", context);
         }
-        else if (fontName.contentEquals(context.getString(R.string.font_roboto))) {
+        else if (fontName.contentEquals(context.getString(R.string.font_montserrat))) {
             /*
             information about the TextView textStyle:
             http://developer.android.com/reference/android/R.styleable.html#TextView_textStyle
             */
             switch (textStyle) {
                 case Typeface.BOLD: // bold
-                    return FontCache.getTypeface("Roboto-Medium.ttf", context);
-
-
-                case Typeface.ITALIC: // italic
-                    return FontCache.getTypeface("Roboto-Italic.ttf", context);
-
-                case Typeface.BOLD_ITALIC: // bold italic
-                    return FontCache.getTypeface("Roboto-MediumItalic.ttf", context);
+                    return FontCache.getTypeface("Montserrat-Bold.ttf", context);
 
                 case 10: // extra light, equals @integer/font_style_extra_light
-                    return FontCache.getTypeface("Roboto-Light.ttf", context);
-
-                case 11: // extra bold, equals @integer/font_style_extra_bold
-                    return FontCache.getTypeface("Roboto-LightItalic.ttf", context);
+                    return FontCache.getTypeface("Montserrat-Light", context);
 
                 case Typeface.NORMAL: // regular
                 default:
-                    return FontCache.getTypeface("Roboto-Regular.ttf", context);
+                    return FontCache.getTypeface("Montserrat-Regular.ttf", context);
             }
         }
         else {

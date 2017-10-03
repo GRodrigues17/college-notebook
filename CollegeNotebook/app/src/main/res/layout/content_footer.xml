@@ -2,9 +2,29 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
-    android:background="@color/colorRound">
+    android:gravity="center_horizontal"
+    android:layout_alignParentBottom="true">
 
+    <br.com.collegenotebook.view.Customs.MontserratRegularTextView
+        android:id="@+id/txtDoYou"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Don't have an account?"
+        android:textSize="12dp"
+        android:paddingRight="2dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textColor="@color/colorTitle"/>
 
+    <br.com.collegenotebook.view.Customs.MontserratLightTextView
+        android:id="@+id/txtSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" SignUp "
+        android:textSize="12dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textColor="@color/colorTitle"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/txtDoYou" />
 
 </RelativeLayout>

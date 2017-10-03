@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/login_screen">
+
+    <include android:id="@+id/layoutEntry"
+        android:layout_marginTop="200dp"
+        layout="@layout/content_entry"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"/>
+
+    <Button android:id="@+id/btnLoginIn"
+        android:layout_width="230dp"
+        android:layout_height="35dp"
+        android:text="Entrar"
+        android:textAlignment="center"
+        android:textSize="16dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/rounded_box"
+        android:textColor="@color/colorTitle"
+        android:layout_below="@+id/layoutEntry"
+        android:layout_marginTop="20dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+    <include android:id="@+id/layoutRemenber"
+        layout="@layout/content_remenber_me"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnLoginIn"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginBottom="10dp"
+        android:layout_above="@+id/layoutFooter"
+        android:background="@color/colorPrimaryLight"/>
+
+    <include
+        android:id="@+id/layoutFooter"
+        layout="@layout/content_footer"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="16dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

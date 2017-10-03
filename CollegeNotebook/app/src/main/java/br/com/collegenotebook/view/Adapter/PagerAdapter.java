@@ -5,7 +5,6 @@ import android.support.v4.app.FragmentManager;
 
 import br.com.collegenotebook.view.Fragment.MainFragment;
 import br.com.collegenotebook.view.Fragment.SmartFragmentStatePagerAdapter;
-import br.com.collegenotebook.view.Fragment.TimeSheetFragment;
 
 /**
  * Created by GRodrigues17 on 24/10/2016.
@@ -31,7 +30,7 @@ public class PagerAdapter  extends SmartFragmentStatePagerAdapter {
             case 0: // Fragment # 0 - This will show FirstFragment
                 return MainFragment.newInstance(0, "Page # 1");
             case 1: // Fragment # 0 - This will show FirstFragment different title
-                return TimeSheetFragment.newInstance(2, "Page # 2");
+                return MainFragment.newInstance(2, "Page # 2");
             default:
                 return null;
         }

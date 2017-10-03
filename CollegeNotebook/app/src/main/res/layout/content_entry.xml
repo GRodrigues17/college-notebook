@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent">
+
+    <LinearLayout android:id="@+id/layout_insert_email"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_height="50dp"
+        android:background="@drawable/rect_background_alpha">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:src="@mipmap/ic_perm_identity_white"
+            android:layout_toLeftOf="@+id/inputLogin"
+            android:scaleType="fitCenter"
+            android:layout_marginLeft="5dp"
+            android:layout_alignBottom="@+id/inputLogin"
+            android:layout_alignTop="@+id/inputLogin" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/inputLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyErrorText">
+
+            <EditText
+                android:id="@+id/edtLoginUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:inputType="textEmailAddress"
+                android:textColor="@android:color/background_light"
+                android:textColorHint="@android:color/background_light"
+                android:textSize="14dp"
+                android:theme="@style/MyEditText" />
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout android:id="@+id/layout_insert_pass"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/layout_insert_email"
+        android:background="@drawable/rect_background_alpha">
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/inputPassword"
+            android:src="@mipmap/ic_lock_outline_white"
+            android:scaleType="fitCenter"
+            android:layout_marginLeft="5dp"
+            android:layout_alignTop="@+id/inputPassword"
+            android:layout_alignBottom="@+id/inputPassword" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/inputPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyErrorText">
+
+            <EditText
+                android:id="@+id/edtLoginPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:singleLine="false"
+                android:textColor="@android:color/background_light"
+                android:textColorHint="@android:color/background_light"
+                android:textSize="14dp"
+                android:theme="@style/MyEditText" />
+
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+    <!--<com.google.android.gms.common.SignInButton-->
+    <!--android:id="@+id/btnSignGoogle"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_margin="10dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@+id/edtLoginPassword">-->
+
+    <!--</com.google.android.gms.common.SignInButton>-->
+
+
+
+</RelativeLayout>
