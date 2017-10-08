@@ -21,12 +21,15 @@ public Materia(){
         this.nome = nome;
         this.professor = professor;
         this.pasta = pasta;
+
     }
 
     public Materia(String nome, String professor,String pasta) {
         this.nome = nome;
         this.professor = professor;
     }
+
+
 
     @Override
     public String toString() {
@@ -64,6 +67,5 @@ public Materia(){
     public void setPasta(String pasta) {
         this.pasta = pasta;
     }
-
 
 }

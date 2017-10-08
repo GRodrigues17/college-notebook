@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileInputStream;
 
 import br.com.collegenotebook.CreateDirectoryListener;
 import br.com.collegenotebook.R;
@@ -52,7 +53,7 @@ public class GalleryActivity extends AppCompatActivity implements CreateDirector
         mainController = new MainController(this);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        String nomeMateria = bundle.getString("nome_materia");
+        nomeMateria = bundle.getString("nome_materia");
 
         testando(nomeMateria);
 
@@ -72,30 +73,62 @@ public class GalleryActivity extends AppCompatActivity implements CreateDirector
 
         ft = getSupportFragmentManager().beginTransaction();
 
-        mainController.criaDiretorio(nomeMateria);
+        //mainController.criaDiretorio(nomeMateria);
+      String dir = mainController.testDirSave(nomeMateria,this);
+//        Procura o diretório específico da matéria
 
-        //Procura o diretório específico da matéria
+        if(dir.equals("sd")){
+            String root_sd = Environment.getExternalStorageDirectory().toString();
 
-        String root_sd = Environment.getExternalStorageDirectory().toString();
-        File file;
-        file = new File( root_sd +"/CollegeNotebook"+ "/" + nomeMateria) ;
-        File list[] = file.listFiles();
+            File file = new File( root_sd +"/Mattercam"+ "/" +nomeMateria) ;
+            File[] list = file.listFiles();
 
-        //valIdação se há algo dentro do diretório
-        if (list.length == 0){
+//        //valIdação se há algo dentro do diretório
+            if (list==null || list.length == 0){
+                Toast.makeText(this , "Naõ tem nada ainda.", Toast.LENGTH_SHORT).show();
+                //chamo a tela de inserir conteúdo nesse diretório
+                enviaMensagemParaOFragment(nomeMateria , albumEmptyFragment);
+                ft.replace(R.id.your_placeholder, albumEmptyFragment);
+                ft.commit();
+
+            }else {
+                //envio por bundle o nome da matéria que quero exibir os dados
+                enviaMensagemParaOFragment(nomeMateria , galleryFragment);
+                ft.replace(R.id.your_placeholder, galleryFragment);
+                ft.commit();
+            }
+
+        }else if (dir.equals("internal")){
             Toast.makeText(this , "Naõ tem nada ainda.", Toast.LENGTH_SHORT).show();
             //chamo a tela de inserir conteúdo nesse diretório
             enviaMensagemParaOFragment(nomeMateria , albumEmptyFragment);
             ft.replace(R.id.your_placeholder, albumEmptyFragment);
             ft.commit();
 
-        }else {
-            //envio por bundle o nome da matéria que quero exibir os dados
-            enviaMensagemParaOFragment(nomeMateria , galleryFragment);
-            ft.replace(R.id.your_placeholder, galleryFragment);
-            ft.commit();
+
+
         }
+
+
+
     }
+
+//    public void read(View view) {
+//        try {
+//            FileInputStream fin = this.openFileInput(file);
+//            int c;
+//            String temp = "";
+//            while ((c = fin.read()) != -1) {
+//                temp = temp + Character.toString((char) c);
+//            }
+//            et.setText(temp);
+//            Toast.makeText(getBaseContext(), "file read",
+//                    Toast.LENGTH_SHORT).show();
+//
+//        } catch (Exception e) {
+//
+//        }
+//    }
 
 
     public void enviaMensagemParaOFragment(String nomeMateria, Fragment fragment){

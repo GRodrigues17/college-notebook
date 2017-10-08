@@ -59,7 +59,7 @@ public class PageDetailFragment extends Fragment
 
         File file;
         String root_sd = Environment.getExternalStorageDirectory().getAbsolutePath();
-        file = new File( root_sd +"/CollegeNotebook"+ "/" + nomeMateria) ;
+        file = new File( root_sd +"/Mattercam"+ "/" + nomeMateria) ;
         File list[] = file.listFiles();
         Picasso.with(getActivity())
                 .load(list[position]) // load minha lista de arquivos

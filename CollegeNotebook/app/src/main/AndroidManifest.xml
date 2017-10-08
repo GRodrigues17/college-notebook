@@ -25,7 +25,7 @@
         <activity
             android:name=".view.Activity.LoginActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/LoginTheme">
         </activity>
         <activity
             android:name=".view.Activity.SignUpActivity"
@@ -37,6 +37,20 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+
+        <activity
+            android:name=".view.Activity.AboutActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+        <activity
+            android:name=".view.Activity.SettingActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+
 
         <activity
             android:name=".view.Activity.GalleryActivity"

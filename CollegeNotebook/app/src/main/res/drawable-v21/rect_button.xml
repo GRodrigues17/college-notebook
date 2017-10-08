@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
-    android:color="@color/colorBackground">
+    android:color="@android:color/background_light">
     <item>
         <selector>
             <item android:state_activated="true">
@@ -8,7 +8,7 @@
             </item>
 
             <item>
-                <color android:color="@color/colorBackground" />
+                <color android:color="@color/colorPrimaryLight" />
             </item>
         </selector>
     </item>

@@ -17,7 +17,6 @@ public class BaseDAO extends SQLiteOpenHelper {
     public static final String MATERIA_PROFESSOR = "professor";
     public static final String MATERIA_PASTA = "pasta";
 
-
     public static final String TABLE_USER = "userCrud";
     public static final String ID_USER = "_id";
     public static final String USER_NAME = "userName";
@@ -28,7 +27,7 @@ public class BaseDAO extends SQLiteOpenHelper {
 
 
     public static final String DATABASE_NAME = "database.db";
-    public static final int DATABASE_VERSION =4;
+    public static final int DATABASE_VERSION =5;
 
     public static final String sqlSubject = "create table " + TABLE_MATERIA + "(" +
             ID			+ " integer primary key autoincrement, " +

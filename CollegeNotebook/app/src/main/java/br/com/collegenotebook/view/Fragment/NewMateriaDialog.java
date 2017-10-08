@@ -102,7 +102,6 @@ public class NewMateriaDialog extends DialogFragment implements TextView.OnEdito
         materia.setNome(nome);
         materia.setProfessor(professor);
         materia.setPasta(pastaMateria);
-        //createSuccessful = new BaseController(getActivity()).insereDado(materia);
 
 
         directory = (CreateDirectoryListener) getParentFragment();

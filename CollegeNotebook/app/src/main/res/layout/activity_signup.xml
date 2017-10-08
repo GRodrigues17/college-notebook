@@ -1,21 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:dragger_layout="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    dragger_layout:drag_view_id="@+id/drag_view"
-    dragger_layout:shadow_view_id="@+id/shadow_view"
-    dragger_layout:drag_position="top">
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/layoutUserPhoto"
+        android:layout_height="200dp"
+        android:layout_width="match_parent"
+        layout="@layout/content_user_photo"/>
+
+    <include
+        android:id="@+id/layoutInfo"
+        android:layout_width="match_parent"
+        layout="@layout/content_login"
+        android:layout_below="@+id/layoutUserPhoto"
+        android:layout_height="wrap_content"/>
+
+    <Button android:id="@+id/btnCreate"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_centerInParent="true"
+        android:textColor="@color/colorTitle"
+        android:text="@string/create_account"
+        android:textSize="16dp"
+        android:layout_below="@+id/layoutInfo"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:background="@drawable/rounded_box" />
+
+    <include android:layout_height="wrap_content"
+        layout="@layout/content_or"
+        android:layout_below="@+id/btnCreate"
+        android:layout_width="match_parent"/>
+
+    <!--<com.google.android.gms.common.SignInButton-->
+    <!--android:id="@+id/btnSignGoogle"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_margin="10dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@+id/edtLoginPassword">-->
+
+    <!--</com.google.android.gms.common.SignInButton-->>-->
 
 
-          <LinearLayout
-            android:id="@+id/drag_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <include android:layout_width="match_parent"
-                layout="@layout/content_login"
-                android:layout_height="match_parent"/>
-        </LinearLayout>
 
-</LinearLayout>
+
+</RelativeLayout>

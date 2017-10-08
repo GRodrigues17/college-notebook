@@ -8,14 +8,13 @@ import android.support.v7.app.AppCompatActivity;
 import br.com.collegenotebook.R;
 
 /**
- * Created by GRodrigues17 on 25/01/2017.
+ * Created by Jessica Mendes on 05/10/2017.
  */
 
-public class AboutActivity extends AppCompatActivity{
+public class SettingActivity extends AppCompatActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about);
+        setContentView(R.layout.activity_setting);
     }
 }
-

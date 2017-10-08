@@ -38,7 +38,7 @@ public class GalleryFragment  extends Fragment implements GalleryActionsListener
     private MainController galleryController;
     private GalleryAdapter adapterGallery;
     private FragmentTransaction ft;
-    GridView listItem;
+    private GridView listItem;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -105,7 +105,7 @@ public class GalleryFragment  extends Fragment implements GalleryActionsListener
         File file;
         String root_sd = Environment.getExternalStorageDirectory().getAbsolutePath();
 
-        file = new File( root_sd +"/CollegeNotebook"+ "/" + nomeMateria) ;
+        file = new File( root_sd +"/Mattercam"+ "/" + nomeMateria) ;
         final File list[] = file.listFiles();
 
         listItem = (GridView) view.findViewById(R.id.grid_view);

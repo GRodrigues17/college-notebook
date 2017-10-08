@@ -1,2 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">Mattercam</string>
+    <string name="gallery_name">Gallery</string>
+    <string name="navigation_drawer_open">Open Menu</string>
+    <string name="navigation_drawer_close">Close Menu</string>
+    <string name="action_settings">Settings</string>
+    <string name="font_montserrat_light">Montserrat-Light</string>
+    <string name="font_montserrat">Montserrat</string>
+    <string name="new_subject">New Subject</string>
+    <string name="email_required">Email Required</string>
+    <string name="nick_required">Nick Required</string>
+    <string name="password_required">Empty Password</string>
+    <string name="email_size_invalid">Email or Password Invalid</string>
+    <string name="nick_size_invalid">Login must be between 4 and 15 characters</string>
+    <string name="password_size_invalid">Password must be between 4 and 8 characters</string>
+    <string name="password_not_corresponding">Passwords do not match</string>
+    <string name="welcome_text">lol,Your notebook is brand new!</string>
+    <string name="welcome_header">Welcome!</string>
+    <string name="create_account">Create Account</string>
+    <string name="signIn">Sign In</string>
+    <string name="forgot_info">Forgot</string>
+    <string name="get_help"></string>
+    <string name="do_you_have" />
+    <string name="sign_up" />
+    <string name="or" />
+    <string name="email" />
+    <string name="password" />
+    <string name="confirm_pass" />
+    <string name="menu_subjects">Cadernos</string>
+    <string name="menu_tools">Configurações</string>
+    <string name="menu_about">Sobre Nós</string>
+</resources>

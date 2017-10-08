@@ -1,21 +1,14 @@
 package br.com.collegenotebook.view.Adapter;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.media.Image;
-import android.text.Layout;
-import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
-import java.util.Random;
 
 import br.com.collegenotebook.R;
 import br.com.collegenotebook.model.Materia;
@@ -76,10 +69,9 @@ public class SubjectAdapter extends BaseAdapter {
     }
 
 
-    public View getView(int position, View convertView, ViewGroup viewGroup2) {
+    public View getView(final int position, View convertView, ViewGroup viewGroup2) {
         try {
             Materia materia = materias.get(position);
-
 
             if (convertView == null) {
                 convertView = inflater.inflate(R.layout.class_name_item, null);
@@ -88,6 +80,9 @@ public class SubjectAdapter extends BaseAdapter {
                 holder.txtMateria = (TextView) convertView.findViewById(R.id.class_name);
                 holder.txtProfessor = (TextView) convertView.findViewById(R.id.professor_name);
                 holder.viewColor= (View) convertView.findViewById(R.id.viewColor);
+                holder.viewFav= (View) convertView.findViewById(R.id.layoutFavItem);
+                holder.viewIconFav= (View) convertView.findViewById(R.id.imgLike);
+
                 convertView.setTag(holder);
 
             } else {
@@ -97,8 +92,7 @@ public class SubjectAdapter extends BaseAdapter {
             holder.txtMateria.setText(materia.getNome());
             holder.txtProfessor.setText(materia.getProfessor());
             holder.viewColor.setBackgroundResource(R.color.colorPrimary);
-
-
+            //holder.viewIconFav.setBackgroundResource(materia.ge);
             return convertView;
 
         } catch (Exception e) {
@@ -108,10 +102,25 @@ public class SubjectAdapter extends BaseAdapter {
         return convertView;
     }
 
+
     static class ViewHolder {
         public TextView txtMateria;
         public TextView txtProfessor;
         public View viewColor;
+        public View viewFav;
+        public View viewIconFav;
+    }
+
+
+    private boolean onFavClick(int position,boolean checked) {
+        if (checked) {
+            holder.viewIconFav.setBackgroundResource(R.mipmap.ic_fav_enable);
+            return true;
+
+        } else
+            holder.viewIconFav.setBackgroundResource(R.mipmap.ic_fav_unable);
+        return false;
+
     }
 
 

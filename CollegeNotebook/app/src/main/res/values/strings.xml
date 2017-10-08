@@ -16,4 +16,18 @@
     <string name="password_not_corresponding">As senhas não correspondem</string>
     <string name="welcome_text">Ops,Você ainda não possui cadernos</string>
     <string name="welcome_header">Bem vindo(a)</string>
+    <string name="create_account">Criar Conta</string>
+    <string name="signIn">Entrar</string>
+    <string name="forgot_info">Esqueci minha senha.</string>
+    <string name="get_help"> Obter Ajuda</string>
+    <string name="do_you_have">Novo por aqui?</string>
+    <string name="sign_up"> Criar conta</string>
+    <string name="or">OU</string>
+    <string name="email">Email</string>
+    <string name="password">Senha</string>
+    <string name="confirm_pass">Confirme a senha</string>
+    <string name="menu_subjects">Cadernos</string>
+    <string name="menu_tools">Configurações</string>
+    <string name="menu_about">Sobre Nós</string>
+
 </resources>

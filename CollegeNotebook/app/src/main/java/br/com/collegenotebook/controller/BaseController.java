@@ -59,7 +59,6 @@ public class BaseController {
         cursorSubject = db.rawQuery(sqlQuery, null);
         if  (cursorSubject != null && cursorSubject.moveToFirst()) {
             while(cursorSubject.moveToNext()) {
-
                 Materia user = new Materia(cursorSubject.getLong(cursorSubject.getColumnIndex(BaseDAO.ID)),
                         cursorSubject.getString(cursorSubject.getColumnIndex(BaseDAO.MATERIA_NOME)),
                         cursorSubject.getString(cursorSubject.getColumnIndex(BaseDAO.MATERIA_PROFESSOR)),

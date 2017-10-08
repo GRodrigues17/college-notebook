@@ -86,6 +86,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        switch (id){
+            case R.id.menu_notebooks:
+                showNotebooks();
+                break;
+            case R.id.menu_settings:
+                showSetting();
+                break;
+            case R.id.menu_about:
+                showAbout();
+                break;
+        }
         return false;
     }
 
@@ -114,6 +127,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else {
             getFragmentManager().popBackStack();
         }
+    }
+
+    public void showAbout(){
+        Intent intent = new Intent(this,
+                AboutActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+
+    }
+
+    public void showSetting(){
+        Intent intent = new Intent(MainActivity.this,
+                SettingActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+
+    }
+
+    public void showNotebooks(){
+        Intent intent = new Intent(MainActivity.this,
+                MainActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
     }
 
 

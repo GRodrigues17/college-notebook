@@ -17,7 +17,19 @@
     <string name="password_not_corresponding">Passwords do not match</string>
     <string name="welcome_text">lol,Your notebook is brand new!</string>
     <string name="welcome_header">Welcome!</string>
-
+    <string name="create_account">Create Account</string>
+    <string name="signIn">Sign In</string>
+    <string name="forgot_info">I forgot my password. </string>
+    <string name="get_help"> Get Help!</string>
+    <string name="do_you_have">Do not have an account?</string>
+    <string name="sign_up"> Sign Up</string>
+    <string name="or">OR</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_pass">Confirm password</string>
+    <string name="menu_subjects">Notebooks</string>
+    <string name="menu_tools">Settings</string>
+    <string name="menu_about">About Us</string>
 
 
 </resources>

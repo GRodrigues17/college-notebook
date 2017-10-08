@@ -234,7 +234,13 @@ public class MainFragment extends Fragment implements EditNameDialogListener,Cre
     @Override
     public void
     onCreateMateriaListener(String pastaMateria) {
-        mainController.criaDiretorio(pastaMateria);
+        boolean dir = Boolean.parseBoolean(mainController.getCaminhoSdCard());
+        if (dir) {
+            mainController.criaDiretorio(pastaMateria);
+        }
+        else
+            mainController.criaDiretorioInterno(pastaMateria);
+
     }
 
 

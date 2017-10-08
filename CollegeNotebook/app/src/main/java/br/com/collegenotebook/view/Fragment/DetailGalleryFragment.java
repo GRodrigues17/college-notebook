@@ -67,7 +67,7 @@ public class DetailGalleryFragment extends Fragment {
         File file;
         String root_sd = Environment.getExternalStorageDirectory().getAbsolutePath();
 
-        file = new File(root_sd + "/CollegeNotebook" + "/" + nomeMateria);
+        file = new File(root_sd + "/Mattercam" + "/" + nomeMateria);
         final File[] list = file.listFiles();
 
         detailPagerAdapter = new DetailGalleryAdapter(getFragmentManager(), list, nomeMateria);

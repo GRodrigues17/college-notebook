@@ -9,13 +9,12 @@
         android:id="@+id/txtRemenber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Esqueci minha senha."
+        android:text="@string/forgot_info"
         android:textSize="12dp"
         android:paddingTop="8dp"
         android:textColor="@color/colorTitle"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:layout_alignParentTop="true" />
-
 
     <br.com.collegenotebook.view.Customs.MontserratRegularTextView
         android:id="@+id/txtGetHelp"
@@ -28,6 +27,6 @@
         android:textSize="12dp"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="Obter Ajuda"/>
+        android:text="@string/get_help"/>
 
 </RelativeLayout>

@@ -19,30 +19,37 @@
         android:src="@mipmap/ic_book_white"
         android:scaleType="centerInside"/>
 
-    <TextView
+    <br.com.collegenotebook.view.Customs.MontserratLightTextView
         android:id="@+id/professor_name"
         android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:text="Nome"
+        android:layout_height="wrap_content"
+        android:text="Nome do professor"
         android:textAlignment="center"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
         android:textColor="@color/colorSub"
-        android:textSize="16dp"/>
+        android:textSize="12dp"
+        android:layout_below="@+id/class_name"
+        android:layout_toEndOf="@+id/img_notebook" />
 
-    <TextView
+    <br.com.collegenotebook.view.Customs.MontserratRegularTextView
         android:id="@+id/class_name"
         android:layout_width="wrap_content"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:maxLines="1"
         android:singleLine="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionMode.Title"
         android:ellipsize="end"
-        android:textSize="18dp"
-        android:layout_marginTop="20dp"
+        android:text="nome da materia"
+        android:textSize="14dp"
         android:layout_toEndOf="@id/img_notebook"
         android:textColor="@color/colorText"
-        android:layout_centerVertical="true" />
+        android:layout_alignTop="@+id/img_notebook" />
 
-
+    <include
+        android:id="@+id/layoutFavItem"
+        layout="@layout/content_fav_item"
+        android:layout_alignTop="@+id/class_name"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="19dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"/>
 </RelativeLayout>
