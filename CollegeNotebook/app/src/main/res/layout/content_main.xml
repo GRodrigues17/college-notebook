@@ -12,6 +12,7 @@
         android:paddingBottom="5dp"
         android:layout_marginTop="60dp"
         android:gravity="center"
+        android:layout_above="@+id/viewFooterMenu"
         android:scrollbars="vertical" />
 
     <android.support.design.widget.FloatingActionButton
@@ -24,5 +25,18 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:src="@mipmap/ic_book_white" />
+
+    <View
+        android:id="@+id/viewFooterMenu"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_above="@+id/footerMenu"
+        android:background="@color/colorItem"/>
+
+    <include android:id="@+id/footerMenu"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        layout="@layout/content_menu"/>
 
 </RelativeLayout>
