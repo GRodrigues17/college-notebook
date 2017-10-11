@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -26,11 +27,17 @@ import java.util.List;
 
 import br.com.collegenotebook.CreateDirectoryListener;
 import br.com.collegenotebook.EditNameDialogListener;
+import br.com.collegenotebook.MenuItemClickListener;
 import br.com.collegenotebook.R;
 import br.com.collegenotebook.controller.BaseController;
 import br.com.collegenotebook.controller.MainController;
 import br.com.collegenotebook.model.Materia;
+import br.com.collegenotebook.model.TimeSheet;
+import br.com.collegenotebook.view.Activity.CalendarActivity;
 import br.com.collegenotebook.view.Activity.GalleryActivity;
+import br.com.collegenotebook.view.Activity.MainActivity;
+import br.com.collegenotebook.view.Activity.ProfileActivity;
+import br.com.collegenotebook.view.Activity.TimeSheetActivity;
 import br.com.collegenotebook.view.Adapter.SubjectAdapter;
 
 /**
@@ -44,13 +51,12 @@ public class MainFragment extends Fragment implements EditNameDialogListener,Cre
     private ListView materiasListView;
     private MainController mainController;
     private SparseBooleanArray mSelectedItemsIds;
-    private FloatingActionButton fab;
+
 
     private GalleryFragment galleryFragment;
     private AlbumEmptyFragment albumEmptyFragment;
-    DialogFragment dialog;
-
     private FragmentTransaction ft;
+
 
 
     public static MainFragment newInstance(int someInt, String someTitle) {
@@ -68,6 +74,7 @@ public class MainFragment extends Fragment implements EditNameDialogListener,Cre
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         baseController = new BaseController(getContext());
         mainController = new MainController(getContext());
+
         materiasListView = (ListView) view.findViewById(R.id.list_materia_name);
         readRecords();
 
@@ -151,24 +158,7 @@ public class MainFragment extends Fragment implements EditNameDialogListener,Cre
             }
         });
 
-
-        fab = (FloatingActionButton) view.findViewById(R.id.fab);
-        fab.show();
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showDialog();
-            }
-        });
     }
-
-
-    private void showDialog() {
-        // Create an instance of the dialog fragment and show it
-        dialog = new NewMateriaDialog();
-        dialog.show(getChildFragmentManager(), "NoticeDialogFragment");;
-    }
-
 
     public void readRecords() {
         materias = baseController.getAll();
@@ -194,7 +184,6 @@ public class MainFragment extends Fragment implements EditNameDialogListener,Cre
         //valIdação se há algo dentro do diretório
         if (list.length == 0){
             Toast.makeText(getActivity() , "Naõ tem nada ainda.", Toast.LENGTH_SHORT).show();
-            fab.hide();
             //chamo a tela de inserir conteúdo nesse diretório
             enviaMensagemParaOFragment(nomeMateria , albumEmptyFragment);
             ft.replace(R.id.your_placeholder, albumEmptyFragment);
@@ -203,7 +192,6 @@ public class MainFragment extends Fragment implements EditNameDialogListener,Cre
 
         }else {
             //envio por bundle o nome da matéria que quero exibir os dados
-            fab.hide();
             enviaMensagemParaOFragment(nomeMateria , galleryFragment);
             ft.replace(R.id.your_placeholder, galleryFragment);
             ft.addToBackStack("gallery");
@@ -256,4 +244,7 @@ public class MainFragment extends Fragment implements EditNameDialogListener,Cre
         super.onPause();
     }
 
+
+
 }
+

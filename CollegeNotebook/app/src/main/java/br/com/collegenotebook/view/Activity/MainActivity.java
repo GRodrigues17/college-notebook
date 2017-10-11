@@ -3,25 +3,41 @@ package br.com.collegenotebook.view.Activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.ViewPager;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import br.com.collegenotebook.R;
-import br.com.collegenotebook.view.Adapter.PagerAdapter;
-import br.com.collegenotebook.view.Fragment.SmartFragmentStatePagerAdapter;
+import br.com.collegenotebook.view.Fragment.CalendarFragment;
+import br.com.collegenotebook.view.Fragment.NewMateriaDialog;
+import br.com.collegenotebook.view.Fragment.NotebookFragment;
+import br.com.collegenotebook.view.Fragment.ProfileFragment;
+import br.com.collegenotebook.view.Fragment.TimeSheetFragment;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private SmartFragmentStatePagerAdapter adapterViewPager;
+    private ImageView home;
+    private ImageView timeSheet;
+    private ImageView calendar;
+    private ImageView profile;
+    private ImageView add;
+
+    private TimeSheetFragment timeSheetFragment;
+    private CalendarFragment calendarFragment;
+    private ProfileFragment profileFragment;
+    private NotebookFragment notebookFragment;
+
+    private DialogFragment dialog;
+    private FragmentTransaction ft;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,24 +46,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        ft = getSupportFragmentManager().beginTransaction();
+        if (findViewById(R.id.fragmentDisplay) != null) {
+            if (savedInstanceState != null) {
+                return;
+            }
+            notebookFragment = new NotebookFragment();
+            notebookFragment.setArguments(getIntent().getExtras());
+            getSupportFragmentManager().beginTransaction().add(R.id.fragmentDisplay, notebookFragment).commit();
+        }
 
-        ViewPager vpPager = (ViewPager) findViewById(R.id.pager);
-        vpPager.setClipToPadding(false);
-        vpPager.setPageMargin(12);
-        adapterViewPager = new PagerAdapter(getSupportFragmentManager());
-        vpPager.setAdapter(adapterViewPager);
+        home = (ImageView) findViewById(R.id.home);
+        timeSheet = (ImageView) findViewById(R.id.timesheet);
+        calendar = (ImageView) findViewById(R.id.calendar);
+        profile = (ImageView) findViewById(R.id.profile);
+        add = (ImageView) findViewById(R.id.add);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
+        home.setOnClickListener(this);
+        calendar.setOnClickListener(this);
+        timeSheet.setOnClickListener(this);
+        add.setOnClickListener(this);
+        profile.setOnClickListener(this);
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -84,24 +108,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                     ContextMenu.ContextMenuInfo menuInfo) {
     }
 
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        switch (id){
-            case R.id.menu_notebooks:
-                showNotebooks();
-                break;
-            case R.id.menu_settings:
-                showSetting();
-                break;
-            case R.id.menu_about:
-                showAbout();
-                break;
-        }
-        return false;
-    }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -118,6 +124,79 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    private void showDialog() {
+        // Create an instance of the dialog fragment and show it
+        dialog = new NewMateriaDialog();
+        dialog.show(getSupportFragmentManager(), "NoticeDialogFragment");
+    }
+
+
+    @Override
+    public void onClick(View view) {
+
+
+          switch (view.getId()){
+            case R.id.home:
+                showNotebooks();
+                break;
+            case R.id.timesheet:
+                showTimesheet();
+                break;
+            case R.id.add:
+                showDialog();
+                break;
+            case R.id.calendar:
+                showCalendar();
+                break;
+            case R.id.profile:
+                showProfile();
+                break;
+        }
+
+
+    }
+
+    public void showCalendar(){
+        calendarFragment = new CalendarFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.fragmentDisplay, calendarFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+
+    }
+
+
+    public void showTimesheet(){
+        timeSheetFragment =  new TimeSheetFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.fragmentDisplay, timeSheetFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+
+    }
+
+
+    public void showProfile(){
+        profileFragment = new ProfileFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.fragmentDisplay, profileFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    public void showNotebooks(){
+        notebookFragment = new NotebookFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.fragmentDisplay, notebookFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+
     @Override
     public void onBackPressed() {
         int count = getFragmentManager().getBackStackEntryCount();
@@ -128,32 +207,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getFragmentManager().popBackStack();
         }
     }
-
-    public void showAbout(){
-        Intent intent = new Intent(this,
-                AboutActivity.class);
-        startActivity(intent);
-        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-
-    }
-
-    public void showSetting(){
-        Intent intent = new Intent(MainActivity.this,
-                SettingActivity.class);
-        startActivity(intent);
-        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-
-    }
-
-    public void showNotebooks(){
-        Intent intent = new Intent(MainActivity.this,
-                MainActivity.class);
-        startActivity(intent);
-        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-    }
-
-
-
-
 
 }

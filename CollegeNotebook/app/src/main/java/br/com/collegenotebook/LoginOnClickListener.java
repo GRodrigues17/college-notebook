@@ -1,4 +1,4 @@
-package br.com.collegenotebook.view.Activity;
+package br.com.collegenotebook;
 
 import android.view.View;
 
