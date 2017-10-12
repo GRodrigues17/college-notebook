@@ -1,5 +1,6 @@
 package br.com.collegenotebook.view.Fragment;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -77,7 +78,7 @@ public class NewMateriaDialog extends DialogFragment implements TextView.OnEdito
 
                     salvaMateria();
 
-                    activity = (EditNameDialogListener) getParentFragment();
+                    activity = (EditNameDialogListener) getActivity();
                     activity.onFinishEditDialog(materia);
                     dismiss();
                 }else {
@@ -104,7 +105,7 @@ public class NewMateriaDialog extends DialogFragment implements TextView.OnEdito
         materia.setPasta(pastaMateria);
 
 
-        directory = (CreateDirectoryListener) getParentFragment();
+        directory = (CreateDirectoryListener) getActivity();
         directory.onCreateMateriaListener(pastaMateria);
 
     }
@@ -126,13 +127,27 @@ public class NewMateriaDialog extends DialogFragment implements TextView.OnEdito
     @Override
     public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
         if (EditorInfo.IME_ACTION_DONE == actionId) {
-            activity = (EditNameDialogListener) getParentFragment();
+            activity = (EditNameDialogListener) getActivity();
             activity.onFinishEditDialog(materia);
             this.dismiss();
             return true;
         }
         return false;
     }
+//
+//    @Override
+//    public void onAttach(Activity activity) {
+//        super.onAttach(activity);
+//        // Verify that the host activity implements the callback interface
+//        try {
+//            // Instantiate the NoticeDialogListener so we can send events to the host
+//            mListener = (NoticeDialogListener) activity;
+//        } catch (ClassCastException e) {
+//            // The activity doesn't implement the interface, throw exception
+//            throw new ClassCastException(activity.toString()
+//                    + " must implement NoticeDialogListener");
+//        }
+//    }
 
 
 

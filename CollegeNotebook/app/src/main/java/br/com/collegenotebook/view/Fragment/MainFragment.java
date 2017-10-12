@@ -44,8 +44,9 @@ import br.com.collegenotebook.view.Adapter.SubjectAdapter;
  * Created by GRodrigues17 on 23/10/2016.
  */
 
-public class MainFragment extends Fragment implements EditNameDialogListener,CreateDirectoryListener{
+public class MainFragment extends Fragment {
     private BaseController baseController;
+
     private SubjectAdapter adapter;
     private List<Materia> materias;
     private ListView materiasListView;
@@ -177,7 +178,7 @@ public class MainFragment extends Fragment implements EditNameDialogListener,Cre
         //Procura o diretório específico da matéria
         File file;
         String root_sd = Environment.getExternalStorageDirectory().toString();
-        file = new File( root_sd +"/CollegeNotebook"+ "/" + nomeMateria) ;
+        file = new File( root_sd +"/Mattercam"+ "/" + nomeMateria) ;
         File list[] = file.listFiles();
 
 
@@ -205,31 +206,6 @@ public class MainFragment extends Fragment implements EditNameDialogListener,Cre
         fragment.setArguments(bundle);
     }
 
-
-    @Override
-    public void onFinishEditDialog(Materia materia) {
-        this.baseController.open();
-
-        this.baseController.insertSubject(materia);
-        this.adapter.add(materia);
-        this.adapter.notifyDataSetChanged();
-        this.readRecords();
-
-        this.baseController.close();
-
-    }
-
-    @Override
-    public void
-    onCreateMateriaListener(String pastaMateria) {
-        boolean dir = Boolean.parseBoolean(mainController.getCaminhoSdCard());
-        if (dir) {
-            mainController.criaDiretorio(pastaMateria);
-        }
-        else
-            mainController.criaDiretorioInterno(pastaMateria);
-
-    }
 
 
     @Override
