@@ -16,7 +16,7 @@
         android:layout_height="45dp"
         android:background="@drawable/round_image"
         android:layout_margin="10dp"
-        android:src="@mipmap/ic_book_white"
+        android:src="@mipmap/ic_notebook_white"
         android:scaleType="centerInside"/>
 
     <br.com.collegenotebook.view.Customs.MontserratLightTextView
