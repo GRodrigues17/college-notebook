@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView android:id="@+id/imgSite"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/ic_link_variant_grey600_48dp"/>
+
+    <br.com.collegenotebook.view.Customs.MontserratRegularTextView
+        android:id="@+id/txtSite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Website"
+        android:layout_marginLeft="10dp"
+        android:textSize="14dp"
+        android:textColor="@color/colorText"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:layout_toRightOf="@+id/imgSite"/>
+
+
+    <ImageView android:id="@+id/imgContact"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_centerVertical="true"
+        android:scaleType="fitCenter"
+        android:layout_below="@+id/imgSite"
+        android:src="@mipmap/ic_email_outline_grey600_48dp"/>
+
+    <br.com.collegenotebook.view.Customs.MontserratRegularTextView
+        android:id="@+id/txtEmailAdress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Email"
+        android:textSize="14dp"
+        android:layout_centerVertical="true"
+        android:textColor="@color/colorText"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:layout_below="@+id/imgSite"
+        android:layout_alignStart="@+id/txtSite" />
+
+</RelativeLayout>

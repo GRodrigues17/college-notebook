@@ -14,8 +14,8 @@ import br.com.collegenotebook.R;
  */
 
 public class ProfileFragment extends Fragment {
-    public static CalendarFragment newInstance(int someInt, String someTitle) {
-        CalendarFragment fragmentDemo = new CalendarFragment();
+    public static ProfileFragment newInstance(int someInt, String someTitle) {
+        ProfileFragment fragmentDemo = new ProfileFragment();
         return fragmentDemo;
     }
 

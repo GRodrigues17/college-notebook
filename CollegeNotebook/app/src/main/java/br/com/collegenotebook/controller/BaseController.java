@@ -21,7 +21,6 @@ public class BaseController {
     private SQLiteDatabase db;
     private BaseDAO banco;
     Cursor cursorSubject;
-    User user;
 
 
     public BaseController(Context context){

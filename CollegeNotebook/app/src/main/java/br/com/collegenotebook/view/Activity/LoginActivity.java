@@ -3,9 +3,7 @@ package br.com.collegenotebook.view.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -14,20 +12,12 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.github.ppamorim.dragger.DraggerActivity;
 import com.google.android.gms.common.SignInButton;
 
-import br.com.collegenotebook.EditNameDialogListener;
 import br.com.collegenotebook.R;
-import br.com.collegenotebook.controller.BaseController;
 import br.com.collegenotebook.controller.LoginController;
-import br.com.collegenotebook.controller.MainController;
-import br.com.collegenotebook.model.Materia;
-import br.com.collegenotebook.model.User;
 
 /**
  * Created by GRodrigues17 on 28/01/2017.

@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.SparseBooleanArray;
@@ -17,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -25,19 +22,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.collegenotebook.CreateDirectoryListener;
-import br.com.collegenotebook.EditNameDialogListener;
-import br.com.collegenotebook.MenuItemClickListener;
 import br.com.collegenotebook.R;
 import br.com.collegenotebook.controller.BaseController;
 import br.com.collegenotebook.controller.MainController;
 import br.com.collegenotebook.model.Materia;
-import br.com.collegenotebook.model.TimeSheet;
-import br.com.collegenotebook.view.Activity.CalendarActivity;
 import br.com.collegenotebook.view.Activity.GalleryActivity;
-import br.com.collegenotebook.view.Activity.MainActivity;
-import br.com.collegenotebook.view.Activity.ProfileActivity;
-import br.com.collegenotebook.view.Activity.TimeSheetActivity;
 import br.com.collegenotebook.view.Adapter.SubjectAdapter;
 
 /**
@@ -108,7 +97,6 @@ public class MainFragment extends Fragment {
             @Override
             public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
                 actionMode.getMenuInflater().inflate(R.menu.menu_list, menu);
-
                 mSelectedItemsIds = new SparseBooleanArray();
                 return true;
             }

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/deleteAll"
-        android:icon="@mipmap/ic_border_all_white"
+        android:icon="@mipmap/ic_border_all"
         android:title="Select All" />
     <item
         android:id="@+id/delete"

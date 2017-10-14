@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center"
     android:background="@color/colorPrimary">
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -10,7 +9,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@color/colorItem"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true" />
 
     <ImageView
@@ -22,9 +21,16 @@
         android:layout_marginTop="14dp"
         android:scaleType="fitStart"
         android:padding="5dp"
-        android:src="@mipmap/ic_photo_camera_white"
+        android:src="@mipmap/ic_camera_white"
         android:layout_alignTop="@+id/imgPictureUser"
         android:layout_alignLeft="@id/imgPictureUser"
         android:clickable="true" />
+
+    <include
+        android:id="@+id/layoutAboutMe"
+        layout="@layout/content_info_profile"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/imgPictureUser" />
 
 </RelativeLayout>

@@ -17,8 +17,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.github.ppamorim.dragger.DraggerActivity;
-
 import br.com.collegenotebook.R;
 import br.com.collegenotebook.controller.LoginController;
 

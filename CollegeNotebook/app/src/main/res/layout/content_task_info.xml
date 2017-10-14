@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_marginLeft="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <br.com.collegenotebook.view.Customs.MontserratRegularTextView
+        android:id="@+id/txtHour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:textSize="30dp"
+        android:textColor="@color/colorAccent"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:layout_alignTop="@+id/txtTaskTitle" />
+
+    <br.com.collegenotebook.view.Customs.MontserratRegularTextView
+        android:id="@+id/txtTaskTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/colorText"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/txtHour"
+        android:textSize="14dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
+
+    <br.com.collegenotebook.view.Customs.MontserratLightTextView
+        android:id="@+id/txtTaksDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Entregar trabalho no email"
+        android:textColor="@color/colorText"
+        android:layout_below="@+id/txtTaskTitle"
+        android:layout_centerVertical="true"
+        android:layout_margin="10dp"
+        android:textSize="14dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:layout_toEndOf="@+id/txtHour" />
+
+</RelativeLayout>
