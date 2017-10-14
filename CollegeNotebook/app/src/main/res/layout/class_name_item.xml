@@ -23,14 +23,13 @@
         android:id="@+id/professor_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nome do professor"
         android:textAlignment="center"
         android:textColor="@color/colorSub"
         android:textSize="12dp"
         android:layout_below="@+id/class_name"
         android:layout_toEndOf="@+id/img_notebook" />
 
-    <br.com.collegenotebook.view.Customs.MontserratRegularTextView
+    <br.com.collegenotebook.view.Customs.MontserratBoldTextView
         android:id="@+id/class_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,7 +37,6 @@
         android:singleLine="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionMode.Title"
         android:ellipsize="end"
-        android:text="nome da materia"
         android:textSize="14dp"
         android:layout_toEndOf="@id/img_notebook"
         android:textColor="@color/colorText"
@@ -47,9 +45,10 @@
     <include
         android:id="@+id/layoutFavItem"
         layout="@layout/content_fav_item"
+        android:layout_centerVertical="true"
         android:layout_alignTop="@+id/class_name"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="19dp"
+        android:layout_marginEnd="10dp"
         android:layout_width="50dp"
         android:layout_height="50dp"/>
 </RelativeLayout>

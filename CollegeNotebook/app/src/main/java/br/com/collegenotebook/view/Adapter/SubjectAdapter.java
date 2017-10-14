@@ -8,6 +8,10 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.like.IconType;
+import com.like.LikeButton;
+import com.like.OnLikeListener;
+
 import java.util.List;
 
 import br.com.collegenotebook.R;
@@ -81,7 +85,7 @@ public class SubjectAdapter extends BaseAdapter {
                 holder.txtProfessor = (TextView) convertView.findViewById(R.id.professor_name);
                 holder.viewColor= (View) convertView.findViewById(R.id.viewColor);
                 holder.viewFav= (View) convertView.findViewById(R.id.layoutFavItem);
-                holder.viewIconFav= (View) convertView.findViewById(R.id.imgLike);
+                holder.viewIconFav= (LikeButton) convertView.findViewById(R.id.iconFav);
 
                 convertView.setTag(holder);
 
@@ -92,7 +96,29 @@ public class SubjectAdapter extends BaseAdapter {
             holder.txtMateria.setText(materia.getNome());
             holder.txtProfessor.setText(materia.getProfessor());
             holder.viewColor.setBackgroundResource(R.color.colorPrimary);
-            //holder.viewIconFav.setBackgroundResource(materia.ge);
+            holder.viewIconFav.setIcon(IconType.Star);
+            holder.viewIconFav.setLiked(false);
+            holder.viewIconFav.setEnabled(true);
+            holder.viewIconFav.setIconSizeDp(20);
+            holder.viewIconFav.setCircleStartColorRes(R.color.colorAccent);
+            holder.viewIconFav.setCircleEndColorRes(R.color.colorPrimary);
+            holder.viewIconFav.setLikeDrawableRes(R.drawable.star_on);
+            holder.viewIconFav.setUnlikeDrawableRes(R.drawable.star_off);
+            holder.viewIconFav.setExplodingDotColorsRes(R.color.colorPrimary,R.color.colorAccent);
+            holder.viewIconFav.setAnimationScaleFactor(2);
+            holder.viewIconFav.setOnLikeListener(new OnLikeListener() {
+                @Override
+                public void liked(LikeButton likeButton) {
+
+
+                }
+
+                @Override
+                public void unLiked(LikeButton likeButton) {
+
+
+                }
+            });
             return convertView;
 
         } catch (Exception e) {
@@ -108,20 +134,22 @@ public class SubjectAdapter extends BaseAdapter {
         public TextView txtProfessor;
         public View viewColor;
         public View viewFav;
-        public View viewIconFav;
+        public LikeButton viewIconFav;
     }
 
 
-    private boolean onFavClick(int position,boolean checked) {
-        if (checked) {
-            holder.viewIconFav.setBackgroundResource(R.mipmap.ic_fav_enable);
-            return true;
+   // private boolean onFavClick(int position,boolean checked) {
+//        if (checked) {
+//            holder.viewIconFav.setBackgroundResource(R.mipmap.ic_fav_enable);
+//            return true;
+//
+//        } else
+//            holder.viewIconFav.setBackgroundResource(R.mipmap.ic_fav_unable);
+//        return false;
 
-        } else
-            holder.viewIconFav.setBackgroundResource(R.mipmap.ic_fav_unable);
-        return false;
+    //}
 
-    }
+
 
 
 }
