@@ -4,37 +4,23 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
-import android.os.StatFs;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-
-import br.com.collegenotebook.R;
-import br.com.collegenotebook.view.Activity.AboutActivity;
-import br.com.collegenotebook.view.Activity.MainActivity;
-import br.com.collegenotebook.view.Activity.SettingActivity;
-import br.com.collegenotebook.view.Activity.SplashActivity;
-
-import static android.R.attr.data;
-import static android.os.ParcelFileDescriptor.MODE_READ_ONLY;
-import static android.os.ParcelFileDescriptor.MODE_WORLD_READABLE;
 
 /**
  * Created by GRodrigues17 on 07/10/2016.
  */
 
-public class MainController {
+public class NotebookController {
     private Context context;
     private File imageFile;
-    public MainController(Context context){
+    public NotebookController(Context context){
         this.context = context;
 
     }
@@ -133,7 +119,7 @@ public class MainController {
 //    }
 
 
-    public String testDirSave(String nomeMateria,Context context){
+    public String testDirSave(String nomeMateria, Context context){
         String dir = "";
         if(getCaminhoSdCard().equals("")){
             //saveArrayToSDCard("nomeDaImagem", imagemEmBytes);

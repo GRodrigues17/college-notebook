@@ -1,29 +1,33 @@
 package br.com.collegenotebook.model;
 
-import java.io.Serializable;
 
 /**
  * Created by GRodrigues17 on 28/01/2017.
  */
 
-public class User implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class User {
+
     private long id;
-    private String userName;
     private String userEmail;
     private String userPassword;
+
+    private String userName;
     private String userPhoto;
+    private String userLocale;
+    private String userSite;
 
     public User(){
 
     }
 
-    public User(long id, String userName, String userEmail, String userPassword,String userPhoto) {
+    public User(long id, String userEmail, String userPassword,String userName, String userPhoto, String userSite,String userLocale) {
         this.id = id;
-        this.userName = userName;
         this.userEmail = userEmail;
         this.userPassword = userPassword;
+        this.userName = userName;
         this.userPhoto = userPhoto;
+        this.userLocale = userLocale;
+        this.userLocale = userSite;
     }
 
     public User(long id, String userEmail, String userPassword) {
@@ -73,5 +77,19 @@ public class User implements Serializable {
         this.userPhoto = userPhoto;
     }
 
+    public String getUserLocale() {
+        return userLocale;
+    }
 
+    public void setUserLocale(String userLocale) {
+        this.userLocale = userLocale;
+    }
+
+    public String getUserSite() {
+        return userSite;
+    }
+
+    public void setUserSite(String userSite) {
+        this.userSite = userSite;
+    }
 }

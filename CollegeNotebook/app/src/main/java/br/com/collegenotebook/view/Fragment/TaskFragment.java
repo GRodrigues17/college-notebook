@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.collegenotebook.R;
-import br.com.collegenotebook.model.Materia;
 import br.com.collegenotebook.model.Task;
 import br.com.collegenotebook.view.Adapter.TaskAdapter;
 

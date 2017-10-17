@@ -25,7 +25,7 @@
             android:id="@+id/calendarView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
+            android:background="@drawable/gradient_1"
             app:textColorNormal="@color/colorPrimary"
             app:textColorSelected="@android:color/background_light"
             app:selectorColor="@android:color/background_light"

@@ -1,8 +1,10 @@
 package br.com.collegenotebook.view.Fragment;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+
+import android.icu.text.SimpleDateFormat;
+import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,10 +19,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.sql.Date;
+import java.text.DateFormat;
+
 import br.com.collegenotebook.CreateDirectoryListener;
 import br.com.collegenotebook.EditNameDialogListener;
 import br.com.collegenotebook.R;
-import br.com.collegenotebook.model.Materia;
+import br.com.collegenotebook.model.Matter;
 
 /**
  * Created by GRodrigues17 on 04/10/2016.
@@ -34,7 +39,7 @@ public class NewMateriaDialog extends DialogFragment implements TextView.OnEdito
     boolean createSuccessful;
     private EditNameDialogListener activity;
     private CreateDirectoryListener directory;
-    private Materia materia;
+    private Matter matter;
     private String nome;
     private String professor;
     private String pastaMateria;
@@ -79,7 +84,7 @@ public class NewMateriaDialog extends DialogFragment implements TextView.OnEdito
                     salvaMateria();
 
                     activity = (EditNameDialogListener) getActivity();
-                    activity.onFinishEditDialog(materia);
+                    activity.onFinishEditDialog(matter);
                     dismiss();
                 }else {
                     edtNameSubject.setError("Campo vazio");
@@ -99,10 +104,15 @@ public class NewMateriaDialog extends DialogFragment implements TextView.OnEdito
     }
 
     private void salvaMateria() {
-        materia = new Materia();
-        materia.setNome(nome);
-        materia.setProfessor(professor);
-        materia.setPasta(pastaMateria);
+        String dateCreated = DateFormat.getDateInstance().format(new java.util.Date());
+        matter = new Matter();
+        matter.setTitle(nome);
+        matter.setInstructor(professor);
+        matter.setFolder(pastaMateria);
+        matter.setDate(dateCreated);
+        matter.setLike(0);
+
+
 
 
         directory = (CreateDirectoryListener) getActivity();
@@ -128,7 +138,7 @@ public class NewMateriaDialog extends DialogFragment implements TextView.OnEdito
     public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
         if (EditorInfo.IME_ACTION_DONE == actionId) {
             activity = (EditNameDialogListener) getActivity();
-            activity.onFinishEditDialog(materia);
+            activity.onFinishEditDialog(matter);
             this.dismiss();
             return true;
         }

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<io.codetail.widget.RevealFrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <FrameLayout
+        android:id="@+id/the_awesome_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView android:id="@+id/imgWelcome"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_above="@+id/txtWelcome"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/ic_creation_grey600_48dp" />
+
+            <br.com.collegenotebook.view.Customs.MontserratRegularTextView
+                android:id="@+id/txtAlert"
+                android:layout_width="wrap_content"
+                android:textColor="@color/colorText"
+                android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionMode.Title"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textAlignment="center"
+                android:textSize="14dp"
+                android:text="Seu Caderno Está Novinho!! Tap + para começar"/>
+
+            <br.com.collegenotebook.view.Customs.MontserratBoldTextView
+                android:id="@+id/txtWelcome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/txtAlert"
+                android:text="Bem Vindo(a)!!"
+                android:layout_centerInParent="true"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionMode.Title"
+                android:textColor="@color/colorText"
+                android:textSize="20dp" />
+        </RelativeLayout>
+
+    </FrameLayout>
+
+
+
+</io.codetail.widget.RevealFrameLayout>

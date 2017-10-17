@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.SparseBooleanArray;
 import android.view.ActionMode;
@@ -18,16 +19,19 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.like.LikeButton;
+import com.like.OnLikeListener;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.collegenotebook.R;
 import br.com.collegenotebook.controller.BaseController;
-import br.com.collegenotebook.controller.MainController;
-import br.com.collegenotebook.model.Materia;
+import br.com.collegenotebook.controller.NotebookController;
+import br.com.collegenotebook.model.Matter;
 import br.com.collegenotebook.view.Activity.GalleryActivity;
-import br.com.collegenotebook.view.Adapter.SubjectAdapter;
+import br.com.collegenotebook.view.Adapter.MatterAdapter;
 
 /**
  * Created by GRodrigues17 on 23/10/2016.
@@ -36,10 +40,10 @@ import br.com.collegenotebook.view.Adapter.SubjectAdapter;
 public class MainFragment extends Fragment {
     private BaseController baseController;
 
-    private SubjectAdapter adapter;
-    private List<Materia> materias;
+    private MatterAdapter adapter;
+    private List<Matter> matters;
     private ListView materiasListView;
-    private MainController mainController;
+    private NotebookController notebookController;
     private SparseBooleanArray mSelectedItemsIds;
 
 
@@ -63,7 +67,7 @@ public class MainFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         baseController = new BaseController(getContext());
-        mainController = new MainController(getContext());
+        notebookController = new NotebookController(getContext());
 
         materiasListView = (ListView) view.findViewById(R.id.list_materia_name);
         readRecords();
@@ -71,7 +75,7 @@ public class MainFragment extends Fragment {
         materiasListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                String nomeMateria = materias.get(position).getPasta();
+                String nomeMateria = matters.get(position).getFolder();
                 Intent intent = new Intent();
                 intent.setClass(getActivity(), GalleryActivity.class);
                 intent.putExtra("nome_materia", nomeMateria);
@@ -110,13 +114,13 @@ public class MainFragment extends Fragment {
             public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.delete:
-                        List<Materia> aux = new ArrayList<Materia>();
-                        aux.addAll(materias);
+                        List<Matter> aux = new ArrayList<Matter>();
+                        aux.addAll(matters);
 
                         SparseBooleanArray selected = mSelectedItemsIds;
                         for (int i = 0; i < mSelectedItemsIds.size(); i++) {
                             if (selected.valueAt(i)) {
-                                Materia itemSelecionado = materias.get(selected.keyAt(i));
+                                Matter itemSelecionado = matters.get(selected.keyAt(i));
                                 int pos = aux.indexOf(itemSelecionado);
 
                                 if (pos != -1) {
@@ -150,18 +154,31 @@ public class MainFragment extends Fragment {
     }
 
     public void readRecords() {
-        materias = baseController.getAll();
-        adapter = new SubjectAdapter(getActivity(), materias);
+        matters = baseController.getAll();
+        if (matters.size()==0){
+            showEmptyNotebook();
+        }else {
+        adapter = new MatterAdapter(getActivity(), matters);
         materiasListView.setAdapter(adapter);
+        }
     }
 
+
+    public void showEmptyNotebook(){
+        NotebookEmptyFragment notebookEmptyFragment = new NotebookEmptyFragment();
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.fragmentDisplay, notebookEmptyFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
 
     private void testando(String nomeMateria) {
         albumEmptyFragment = new AlbumEmptyFragment();
         galleryFragment = new GalleryFragment();
 
         ft = getActivity().getSupportFragmentManager().beginTransaction();
-        mainController.criaDiretorio(nomeMateria);
+        notebookController.criaDiretorio(nomeMateria);
 
         //Procura o diretório específico da matéria
         File file;
@@ -207,6 +224,7 @@ public class MainFragment extends Fragment {
         baseController.close();
         super.onPause();
     }
+
 
 
 

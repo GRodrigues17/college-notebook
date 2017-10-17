@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="false" android:drawable="@drawable/rect_background_alpha"/>
+    <item android:state_pressed="false" android:state_focused="false" android:drawable="@drawable/rect_background_alpha"/>
+    <item android:drawable="@drawable/rect_background_alpha"/>
+</selector>

@@ -9,7 +9,6 @@
         android:id="@+id/iconFav"
         android:layout_width="25dp"
         android:layout_height="25dp"
-        android:layout_centerVertical="true"
-        app:icon_type="Star" />
+        android:layout_centerInParent="true" />
 
 </RelativeLayout>

@@ -6,7 +6,7 @@
     <string name="action_settings">Configurações</string>
     <string name="font_montserrat_light">Montserrat-Light</string>
     <string name="font_montserrat">Montserrat</string>
-    <string name="new_subject">New Subject</string>
+    <string name="new_subject">Novo Assunto</string>
     <string name="email_required">Email Obrigatório</string>
     <string name="nick_required">Nick Obrigatório</string>
     <string name="password_required">Senha Vazia</string>
@@ -29,5 +29,7 @@
     <string name="menu_subjects">Cadernos</string>
     <string name="menu_tools">Configurações</string>
     <string name="menu_about">Sobre Nós</string>
+    <string name="matter_name">Título</string>
+    <string name="matter_instructor">Instrutor</string>
 
 </resources>

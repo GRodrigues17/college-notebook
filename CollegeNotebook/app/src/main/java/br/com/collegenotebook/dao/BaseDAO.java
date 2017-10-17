@@ -11,37 +11,46 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class BaseDAO extends SQLiteOpenHelper {
 
-    public static final String TABLE_MATERIA = "materiaCrud";
+    public static final String TABLE_MATTER = "matterCrud";
     public static final String ID = "_id";
-    public static final String MATERIA_NOME = "nome";
-    public static final String MATERIA_PROFESSOR = "professor";
-    public static final String MATERIA_PASTA = "pasta";
+    public static final String MATTER_TITLE = "title";
+    public static final String MATTER_INSTRUCTOR = "instructor";
+    public static final String MATTER_FOLDER = "folder";
+    public static final String MATTER_DATE = "date";
+    public static final String MATTER_LIKE = "like";
 
     public static final String TABLE_USER = "userCrud";
     public static final String ID_USER = "_id";
-    public static final String USER_NAME = "userName";
     public static final String USER_EMAIL = "userEmail";
     public static final String USER_PASSWORD = "userPassword";
+    public static final String USER_NAME = "userName";
     public static final String USER_PHOTO = "userPhoto";
+    public static final String USER_LOCALE = "userLocale";
+    public static final String USER_SITE = "userSite";
+
 
 
 
     public static final String DATABASE_NAME = "database.db";
-    public static final int DATABASE_VERSION =5;
+    public static final int DATABASE_VERSION =7;
 
-    public static final String sqlSubject = "create table " + TABLE_MATERIA + "(" +
+    public static final String sqlSubject = "create table " + TABLE_MATTER + "(" +
             ID			+ " integer primary key autoincrement, " +
-            MATERIA_NOME		+ " text not null, " +
-            MATERIA_PROFESSOR		+ " text not null," +
-            MATERIA_PASTA		+ " text not null"
+            MATTER_TITLE		+ " text not null, " +
+            MATTER_INSTRUCTOR		+ " text not null," +
+            MATTER_FOLDER		+ " text not null," +
+            MATTER_DATE         + " text not null," +
+            MATTER_LIKE         + " integer"
             +")";
 
     public static final String sqlUser = "create table " + TABLE_USER + "(" +
             ID	+ " integer primary key autoincrement, " +
-            USER_NAME		+ " text not null, " +
             USER_EMAIL		+ " text not null," +
             USER_PASSWORD		+ " text not null," +
-            USER_PHOTO		+ " text not null"
+            USER_NAME		+ " text not null," +
+            USER_PHOTO		+ " text not null,"+
+            USER_LOCALE     + " text not null,"+
+            USER_SITE       + " text not null"
             +")";
 
 
@@ -58,7 +67,7 @@ public class BaseDAO extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
-        database.execSQL("DROP TABLE IF EXISTS " + TABLE_MATERIA);
+        database.execSQL("DROP TABLE IF EXISTS " + TABLE_MATTER);
         database.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
         onCreate(database);
     }

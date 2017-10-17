@@ -2,6 +2,7 @@ package br.com.collegenotebook.view.Activity;
 
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
@@ -12,6 +13,8 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.common.SignInButton;
@@ -29,13 +32,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     Button btnLoginIn;
 
 
-    EditText edtLoginUser;
-    EditText edtLoginPassword;
-    String userEmail;
-    String userPassword;
-    View viewSignUp;
-    TextInputLayout inputLogin;
-    TextInputLayout inputPassword;
+    private EditText edtLoginUser;
+    private EditText edtLoginPassword;
+    private String userEmail;
+    private String userPassword;
+    private View viewSignUp;
+    private TextInputLayout inputLogin;
+    private TextInputLayout inputPassword;
+    private AnimationDrawable anim;
 
     private LoginController loginController;
     private Resources resources;
@@ -44,10 +48,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        loginController = new LoginController(this);
+        //loginController = new LoginController(this);
         initViews();
+        loginController = new LoginController(this);
 
         //btnSignGoogle = (SignInButton) findViewById(R.id.btnSignGoogle);
+
+
+        RelativeLayout container = (RelativeLayout) findViewById(R.id.root_layout);
+
+        anim = (AnimationDrawable) container.getBackground();
+        anim.setEnterFadeDuration(6000);
+        anim.setExitFadeDuration(2000);
+
         viewSignUp = (View) findViewById(R.id.layoutFooter);
         viewSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,18 +146,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         return false;
     }
 
-    private boolean hasLoginValid() throws Exception {
+    private boolean hasLoginValid() {
         userEmail = edtLoginUser.getText().toString().trim();
         userPassword = edtLoginPassword.getText().toString().trim();
 
-        if (loginController.validaLogin(userEmail, userPassword)){
-            Toast.makeText(this, "loginExiste", Toast.LENGTH_SHORT).show();
-            return true;
+        try {
+            if (loginController.validaLogin(userEmail, userPassword)!=null){
+                Toast.makeText(this, "loginExiste", Toast.LENGTH_SHORT).show();
+                return true;
 
-        } else {
-            return false;
+            } else {
+                Toast.makeText(this, "loginnão exite", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
+        return false;
     }
 
     private void clearErrorFields(TextInputLayout... textInputLayouts) {
@@ -159,5 +177,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             clearErrorFields(inputPassword);
         }
     }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (anim != null && !anim.isRunning())
+            anim.start();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (anim != null && anim.isRunning())
+            anim.stop();
+    }
+
 
 }

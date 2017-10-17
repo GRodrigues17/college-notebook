@@ -30,4 +30,6 @@
     <string name="menu_subjects">Cadernos</string>
     <string name="menu_tools">Configurações</string>
     <string name="menu_about">Sobre Nós</string>
+    <string name="matter_name">Matter name</string>
+    <string name="matter_instructor">Instructor</string>
 </resources>

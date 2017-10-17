@@ -12,7 +12,6 @@ import android.widget.Toast;
 import java.util.List;
 
 import br.com.collegenotebook.R;
-import br.com.collegenotebook.model.Materia;
 import br.com.collegenotebook.model.TimeSheet;
 
 /**

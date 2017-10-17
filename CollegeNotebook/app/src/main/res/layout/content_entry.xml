@@ -1,83 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout android:id="@+id/layout_insert_email"
+
+    <br.com.collegenotebook.view.Customs.TextInputLayoutCustom
+        android:id="@+id/inputLogin"
         android:layout_width="match_parent"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_height="50dp"
-        android:background="@drawable/rect_background_alpha">
+        android:layout_height="wrap_content"
+        app:errorEnabled="true">
 
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="match_parent"
-            android:src="@mipmap/ic_perm_identity_white"
-            android:layout_toLeftOf="@+id/inputLogin"
-            android:scaleType="fitCenter"
-            android:layout_marginLeft="5dp"
-            android:layout_alignBottom="@+id/inputLogin"
-            android:layout_alignTop="@+id/inputLogin" />
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/inputLogin"
+        <EditText
+            android:id="@+id/edtLoginUser"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:errorEnabled="true">
-
-            <EditText
-                android:id="@+id/edtLoginUser"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:imeOptions="actionDone"
-                android:textColor="@android:color/background_light"
-                android:textSize="14dp"
-                android:theme="@style/MyEditText" />
-        </android.support.design.widget.TextInputLayout>
-
-    </LinearLayout>
+            android:layout_height="40dp"
+            android:imeOptions="actionDone"
+            android:background="@drawable/rect_background_alpha"
+            android:textColor="@android:color/background_light"
+            android:textSize="14dp"
+            android:theme="@style/MyEditText" />
+    </br.com.collegenotebook.view.Customs.TextInputLayoutCustom>
 
 
-    <LinearLayout android:id="@+id/layout_insert_pass"
+    <br.com.collegenotebook.view.Customs.TextInputLayoutCustom
+        android:id="@+id/inputPassword"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="5dp"
-        android:layout_below="@+id/layout_insert_email"
-        android:background="@drawable/rect_background_alpha">
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="match_parent"
-            android:layout_toLeftOf="@+id/inputPassword"
-            android:src="@mipmap/ic_lock_outline_white"
-            android:scaleType="fitCenter"
-            android:layout_marginLeft="5dp"
-            android:layout_alignTop="@+id/inputPassword"
-            android:layout_alignBottom="@+id/inputPassword" />
+        android:layout_height="wrap_content"
+        app:errorEnabled="true">
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/inputPassword"
+        <EditText
+            android:id="@+id/edtLoginPassword"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:errorEnabled="true">
+            android:layout_height="40dp"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:singleLine="false"
+            android:background="@drawable/rect_background_alpha"
+            android:textColor="@android:color/background_light"
+            android:textColorHint="@android:color/background_light"
+            android:textSize="14dp"
+            android:theme="@style/MyEditText" />
 
-            <EditText
-                android:id="@+id/edtLoginPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:imeOptions="actionDone"
-                android:inputType="textPassword"
-                android:singleLine="false"
-                android:textColor="@android:color/background_light"
-                android:textColorHint="@android:color/background_light"
-                android:textSize="14dp"
-                android:theme="@style/MyEditText" />
+    </br.com.collegenotebook.view.Customs.TextInputLayoutCustom>
 
-        </android.support.design.widget.TextInputLayout>
-
-    </LinearLayout>
-</RelativeLayout>
+</LinearLayout>

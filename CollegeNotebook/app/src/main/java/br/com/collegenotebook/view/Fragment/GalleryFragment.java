@@ -6,11 +6,7 @@ import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -25,9 +21,7 @@ import java.io.File;
 import br.com.collegenotebook.GalleryActionsListener;
 import br.com.collegenotebook.R;
 import br.com.collegenotebook.SampleScrollListener;
-import br.com.collegenotebook.controller.MainController;
-import br.com.collegenotebook.view.Activity.GalleryActivity;
-import br.com.collegenotebook.view.Activity.PageDetailActivity;
+import br.com.collegenotebook.controller.NotebookController;
 import br.com.collegenotebook.view.Adapter.GalleryAdapter;
 
 /**
@@ -39,7 +33,7 @@ public class GalleryFragment  extends Fragment implements GalleryActionsListener
     private FloatingActionMenu menuRed;
     private FloatingActionButton fab1;
     private DetailGalleryFragment detailGalleryFragment;
-    private MainController galleryController;
+    private NotebookController galleryController;
     private GalleryAdapter adapterGallery;
     private FragmentTransaction ft;
     private GridView listItem;
@@ -78,7 +72,7 @@ public class GalleryFragment  extends Fragment implements GalleryActionsListener
     @Override
     public void openFABMenu(final View view, final String nomeMateria) {
         menuRed = (FloatingActionMenu) view.findViewById(R.id.menu_red);
-        galleryController = new MainController(getActivity());
+        galleryController = new NotebookController(getActivity());
         fab1 = (FloatingActionButton) view.findViewById(R.id.fab1);
 //        final FloatingActionButton programFab1 = new FloatingActionButton(getActivity());
 //        programFab1.setButtonSize(FloatingActionButton.SIZE_MINI);

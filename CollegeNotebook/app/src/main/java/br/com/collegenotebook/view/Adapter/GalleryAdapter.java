@@ -3,6 +3,7 @@ package br.com.collegenotebook.view.Adapter;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -70,7 +71,7 @@ public class GalleryAdapter extends BaseAdapter {
         return convertView;
     }
 
-    public class CropSquareTransformation implements Transformation {
+    public class CropSquareTransformation implements Transformation{
         @Override public Bitmap transform(Bitmap source) {
             int size = Math.min(source.getWidth(), source.getHeight());
             int x = (source.getWidth() - size) / 2;
@@ -83,5 +84,7 @@ public class GalleryAdapter extends BaseAdapter {
         }
 
         @Override public String key() { return "square()"; }
+
+
     }
 }

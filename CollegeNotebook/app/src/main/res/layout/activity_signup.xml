@@ -33,16 +33,14 @@
         android:layout_below="@+id/btnCreate"
         android:layout_width="match_parent"/>
 
-    <!--<com.google.android.gms.common.SignInButton-->
-    <!--android:id="@+id/btnSignGoogle"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_margin="10dp"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_below="@+id/edtLoginPassword">-->
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/btnSignGoogle"
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edtLoginPassword">
 
-    <!--</com.google.android.gms.common.SignInButton-->>-->
-
-
-
+    </com.google.android.gms.common.SignInButton>
 
 </RelativeLayout>

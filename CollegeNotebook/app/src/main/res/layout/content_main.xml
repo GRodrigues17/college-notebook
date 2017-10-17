@@ -15,5 +15,9 @@
         android:layout_above="@+id/viewFooterMenu"
         android:scrollbars="vertical" />
 
+    <FrameLayout android:id="@+id/fragmentView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 
 </RelativeLayout>

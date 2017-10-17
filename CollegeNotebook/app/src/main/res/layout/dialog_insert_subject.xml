@@ -17,14 +17,14 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/header"
-        android:hint="subject Name"/>
+        android:hint="@string/matter_name"/>
 
     <EditText
         android:id="@+id/edt_professor_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:hint="professor's name"
+        android:hint="@string/matter_instructor"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"

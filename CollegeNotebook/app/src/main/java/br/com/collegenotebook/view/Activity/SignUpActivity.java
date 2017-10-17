@@ -4,10 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -15,10 +13,11 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import br.com.collegenotebook.R;
 import br.com.collegenotebook.controller.LoginController;
+import br.com.collegenotebook.model.Matter;
+import br.com.collegenotebook.model.User;
 
 /**
  * Created by GRodrigues17 on 06/02/2017.
@@ -41,6 +40,7 @@ public class SignUpActivity extends Activity implements View.OnClickListener{
 
     private Resources resources;
     private LoginController loginController;
+    private  User user;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,16 +85,41 @@ public class SignUpActivity extends Activity implements View.OnClickListener{
         if (view.getId() == R.id.btnCreate) {
             if (validateFields()) {
                 if (verifyEmail()){
-                    loginController.saveUser(newEmail, newPassword);
-                    Bundle bundle = new Bundle();
-                    Intent i = new Intent(SignUpActivity.this, MainActivity.class);
-                    bundle.putString("userEmail", newEmail);
-                    i.putExtras(bundle);
-                    startActivity(i);
+                    if (insertNewUser(newEmail, newPassword)) {
+                        Bundle bundle = new Bundle();
+                        Intent i = new Intent(SignUpActivity.this, MainActivity.class);
+                        bundle.putString("userEmail", newEmail);
+                        i.putExtras(bundle);
+                        startActivity(i);
+                    }
                 }
 
             }
         }
+
+    }
+
+    private boolean insertNewUser(String userEmail, String userPassword) {
+        loginController.open();
+        user = new User();
+        user.setUserEmail(userEmail);
+        user.setUserPassword(userPassword);
+        user.setUserName("");
+        user.setUserPhoto("");
+        user.setUserLocale("");
+        user.setUserSite("");
+        if (!loginController.verifyIfUserExists(user)){
+            loginController.insertUser(user);
+            return true;
+        }
+        else {
+            edtEmail.requestFocus();
+            inputEmail.setError("Ops, usuário já cadastrado");
+            return false;
+
+        }
+
+
 
     }
 
@@ -169,10 +194,12 @@ public class SignUpActivity extends Activity implements View.OnClickListener{
             inputEmail.setError("Please enter a Valid E-Mail Address!");
             return false;
         }else {
-            inputEmail.setError("Email válido");
+            //inputEmail.setError("Email válido");
             return true;
         }
     }
+
+
 
 
     @Override

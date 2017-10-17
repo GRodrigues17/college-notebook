@@ -9,8 +9,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.ContextMenu;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -22,10 +20,11 @@ import br.com.collegenotebook.CreateDirectoryListener;
 import br.com.collegenotebook.EditNameDialogListener;
 import br.com.collegenotebook.R;
 import br.com.collegenotebook.controller.BaseController;
-import br.com.collegenotebook.controller.MainController;
-import br.com.collegenotebook.model.Materia;
-import br.com.collegenotebook.view.Adapter.SubjectAdapter;
+import br.com.collegenotebook.controller.NotebookController;
+import br.com.collegenotebook.model.Matter;
+import br.com.collegenotebook.view.Adapter.MatterAdapter;
 import br.com.collegenotebook.view.Fragment.CalendarFragment;
+import br.com.collegenotebook.view.Fragment.NotebookEmptyFragment;
 import br.com.collegenotebook.view.Fragment.NewMateriaDialog;
 import br.com.collegenotebook.view.Fragment.NotebookFragment;
 import br.com.collegenotebook.view.Fragment.ProfileFragment;
@@ -33,10 +32,10 @@ import br.com.collegenotebook.view.Fragment.TimeSheetFragment;
 
 public class MainActivity extends AppCompatActivity implements EditNameDialogListener,CreateDirectoryListener,View.OnClickListener{
 
-    private SubjectAdapter adapter;
-    private List<Materia> materias;
+    private MatterAdapter adapter;
+    private List<Matter> matters;
     private ListView materiasListView;
-    private MainController mainController;
+    private NotebookController notebookController;
     private BaseController baseController;
 
     private ImageView home;
@@ -49,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements EditNameDialogLis
     private CalendarFragment calendarFragment;
     private ProfileFragment profileFragment;
     private NotebookFragment notebookFragment;
+    private NotebookEmptyFragment notebookEmptyFragment;
 
     private DialogFragment dialog;
 
@@ -61,11 +61,12 @@ public class MainActivity extends AppCompatActivity implements EditNameDialogLis
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         baseController = new BaseController(this);
-        mainController = new MainController(this);
+        notebookController = new NotebookController(this);
         if (findViewById(R.id.fragmentDisplay) != null) {
             if (savedInstanceState != null) {
                 return;
             }
+
             notebookFragment = new NotebookFragment();
             notebookFragment.setArguments(getIntent().getExtras());
             getSupportFragmentManager().beginTransaction().add(R.id.fragmentDisplay, notebookFragment).commit();
@@ -86,24 +87,6 @@ public class MainActivity extends AppCompatActivity implements EditNameDialogLis
 
     }
 
-//
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        int id = item.getItemId();
-//
-//        if (id == R.id.action_settings) {
-//            //TODO settings screen
-//
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
 
     @Override
     protected void onResume() {
@@ -149,12 +132,12 @@ public class MainActivity extends AppCompatActivity implements EditNameDialogLis
     @Override
     public void
     onCreateMateriaListener(String pastaMateria) {
-        boolean dir = Boolean.parseBoolean(mainController.getCaminhoSdCard());
+        boolean dir = Boolean.parseBoolean(notebookController.getCaminhoSdCard());
         if (dir) {
-            mainController.criaDiretorio(pastaMateria);
+            notebookController.criaDiretorio(pastaMateria);
         }
         else
-            mainController.criaDiretorioInterno(pastaMateria);
+            notebookController.criaDiretorioInterno(pastaMateria);
 
     }
 
@@ -162,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements EditNameDialogLis
     public void onClick(View view) {
 
 
-          switch (view.getId()){
+        switch (view.getId()){
             case R.id.home:
                 showNotebooks();
                 break;
@@ -223,33 +206,14 @@ public class MainActivity extends AppCompatActivity implements EditNameDialogLis
         transaction.commit();
     }
 
-
-
     @Override
-    public void onFinishEditDialog(Materia materia) {
+    public void onFinishEditDialog(Matter matter) {
         baseController.open();
-        baseController.insertSubject(materia);
+        baseController.insertSubject(matter);
         showNotebooks();
         baseController.close();
 
     }
 
-    public void readRecords() {
-        materias = baseController.getAll();
-        adapter = new SubjectAdapter(this, materias);
-        materiasListView.setAdapter(adapter);
-    }
-
-
-    @Override
-    public void onBackPressed() {
-        int count = getFragmentManager().getBackStackEntryCount();
-        if (count == 0) {
-            super.onBackPressed();
-            //additional code
-        } else {
-            getFragmentManager().popBackStack();
-        }
-    }
 
 }
