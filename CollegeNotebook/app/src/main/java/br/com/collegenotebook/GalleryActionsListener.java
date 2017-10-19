@@ -7,5 +7,5 @@ import android.view.View;
  */
 public interface GalleryActionsListener {
     void openFABMenu(View view, String nomeMateria);
-    void getDirectoryFiles(View view, final String nomeMateria);
+    void getDirectoryFiles();
 }

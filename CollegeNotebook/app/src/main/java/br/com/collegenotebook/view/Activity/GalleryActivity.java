@@ -1,9 +1,14 @@
 package br.com.collegenotebook.view.Activity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.PersistableBundle;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -16,6 +21,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 
 import br.com.collegenotebook.CreateDirectoryListener;
 import br.com.collegenotebook.R;
@@ -28,14 +34,14 @@ import br.com.collegenotebook.view.Fragment.GalleryFragment;
  */
 
 public class GalleryActivity extends AppCompatActivity implements CreateDirectoryListener{
-    static final int REQUEST_IMAGE_CAPTURE = 1;
+    static final int REQUEST_IMAGE_CAPTURE = 100;
     static final int SELECT_PICTURE = 1;
     private GalleryFragment galleryFragment;
     private AlbumEmptyFragment albumEmptyFragment;
     private NotebookController notebookController;
     private String nomeMateria;
     private File picsDir;
-
+    private Uri uri;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -160,9 +166,13 @@ public class GalleryActivity extends AppCompatActivity implements CreateDirector
 
     private void openCamera() {
         picsDir =  notebookController.criaDiretorio(nomeMateria);
-        Intent takePictureIntent = notebookController.openCamera(picsDir);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        File imageFile = new File(picsDir, System.currentTimeMillis() + ".jpg");
+        uri = Uri.fromFile(imageFile);
+        Intent i = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        i.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+
+        if (i.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(i, REQUEST_IMAGE_CAPTURE);
         }
 
 
@@ -190,14 +200,45 @@ public class GalleryActivity extends AppCompatActivity implements CreateDirector
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            //Bundle extras = data.getExtras();
-//            Bitmap imageBitmap = (Bitmap) extras.get("data");
-//            mImageView.setImageBitmap(imageBitmap);
-
-
+       // Bitmap photo = (Bitmap) data.getExtras().get("data");
+        if (requestCode == REQUEST_IMAGE_CAPTURE) {
+            if (resultCode == Activity.RESULT_OK) {
+                // Image captured and saved to fileUri specified in the Intent
+                handleSmallCameraPhoto(uri);
+            } else if (resultCode == RESULT_CANCELED) {
+                // User cancelled the image capture
+            } else {
+                // Image capture failed, advise user
+            }
         }
     }
 
+    private void handleSmallCameraPhoto(Uri uri)
+    {
+        Bitmap bmp=null;
+
+        try {
+            bmp = BitmapFactory.decodeStream(getContentResolver().openInputStream(uri));
+        }
+        catch (FileNotFoundException e)
+        {
+
+            e.printStackTrace();
+        }
+
+
+        Intent displayIntent = new Intent(this, CommentActivity.class);
+        displayIntent.putExtra("BitmapImage", bmp);
+        startActivity(displayIntent);
+
+
+    }
+
+
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+    }
 
 }

@@ -3,6 +3,8 @@ package br.com.collegenotebook.view.Activity;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
@@ -10,7 +12,6 @@ import java.io.File;
 
 import br.com.collegenotebook.R;
 import br.com.collegenotebook.view.Adapter.DetailGalleryAdapter;
-import br.com.collegenotebook.view.Adapter.PagerAdapter;
 import br.com.collegenotebook.view.Customs.DepthPageTransformer;
 import br.com.collegenotebook.view.Fragment.SmartFragmentStatePagerAdapter;
 
@@ -33,7 +34,7 @@ public class PageDetailActivity extends AppCompatActivity {
         File file;
         String root_sd = Environment.getExternalStorageDirectory().getAbsolutePath();
 
-        file = new File(root_sd + "/CollegeNotebook" + "/" + nomeMateria);
+        file = new File(root_sd + "/Mattercam" + "/" + nomeMateria);
         final File[] list = file.listFiles();
 
 

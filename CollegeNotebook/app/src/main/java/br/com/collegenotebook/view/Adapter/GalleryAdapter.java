@@ -23,7 +23,6 @@ import static android.widget.ImageView.ScaleType.CENTER_INSIDE;
  */
 
 public class GalleryAdapter extends BaseAdapter {
-
     private final Context context;
     private File[] minhaLista;
     private LayoutInflater inflater;
@@ -70,6 +69,7 @@ public class GalleryAdapter extends BaseAdapter {
                 .into(convertView);
         return convertView;
     }
+
 
     public class CropSquareTransformation implements Transformation{
         @Override public Bitmap transform(Bitmap source) {

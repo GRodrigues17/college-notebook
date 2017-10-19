@@ -1,23 +1,20 @@
 package br.com.collegenotebook.view.Fragment;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.github.chrisbanes.photoview.PhotoView;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
 
 import br.com.collegenotebook.R;
-import br.com.collegenotebook.view.Adapter.DetailGalleryAdapter;
 
 /**
  * Created by GRodrigues17 on 15/01/2017.
@@ -53,14 +50,16 @@ public class PageDetailFragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.content_detail, container, false);
-        final ImageView imageView = (ImageView) rootView.findViewById(R.id.detail_image);
+        final PhotoView photoView = (PhotoView) rootView.findViewById(R.id.detail_image);
         position = getArguments().getInt("position_number");
         nomeMateria = getArguments().getString("nome_materia");
 
         File file;
         String root_sd = Environment.getExternalStorageDirectory().getAbsolutePath();
         file = new File( root_sd +"/Mattercam"+ "/" + nomeMateria) ;
+
         File list[] = file.listFiles();
+
         Picasso.with(getActivity())
                 .load(list[position]) // load minha lista de arquivos
                 .placeholder(R.drawable.placeholder) //uma tipo de load
@@ -68,7 +67,7 @@ public class PageDetailFragment extends Fragment
                 .fit()
                 .centerInside()
                 .tag(getActivity())
-                .into(imageView);
+                .into(photoView);
 
         return rootView;
     }

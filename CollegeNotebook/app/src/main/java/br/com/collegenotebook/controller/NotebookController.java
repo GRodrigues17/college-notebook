@@ -13,6 +13,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
+import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE;
+
 /**
  * Created by GRodrigues17 on 07/10/2016.
  */
@@ -63,16 +65,17 @@ public class NotebookController {
         }
 
     }
-    public Intent openCamera(File picsDir ){
+    public Intent openCamera(File picsDir){
         //formato que minha imagem vai ser salva nesse diretórioo
         imageFile = new File(picsDir, System.currentTimeMillis() + ".jpg");
-
+        Uri uri = Uri.fromFile(imageFile);
         //chamando a intent da câmera e tirando foto
         Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        i.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imageFile));
+        i.putExtra(MediaStore.EXTRA_OUTPUT, uri);
 
         return i;
     }
+
 
 
     public boolean isExternalStorageWritable() {

@@ -16,6 +16,10 @@
     <color name="colorItem">#E1DCD5</color>
     <color name="colorRound">#BDBDBD</color>
     <color name="colorRed">#F44336</color>
+    <color name="stroke_color">#8cf437</color>
+
+    <color name="transparent">#00FFFFFF</color>
+
 
 
 

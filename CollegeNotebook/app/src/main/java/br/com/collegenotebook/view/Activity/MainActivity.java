@@ -32,9 +32,6 @@ import br.com.collegenotebook.view.Fragment.TimeSheetFragment;
 
 public class MainActivity extends AppCompatActivity implements EditNameDialogListener,CreateDirectoryListener,View.OnClickListener{
 
-    private MatterAdapter adapter;
-    private List<Matter> matters;
-    private ListView materiasListView;
     private NotebookController notebookController;
     private BaseController baseController;
 

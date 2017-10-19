@@ -22,6 +22,8 @@ import br.com.collegenotebook.GalleryActionsListener;
 import br.com.collegenotebook.R;
 import br.com.collegenotebook.SampleScrollListener;
 import br.com.collegenotebook.controller.NotebookController;
+import br.com.collegenotebook.view.Activity.CommentActivity;
+import br.com.collegenotebook.view.Activity.PageDetailActivity;
 import br.com.collegenotebook.view.Adapter.GalleryAdapter;
 
 /**
@@ -37,18 +39,21 @@ public class GalleryFragment  extends Fragment implements GalleryActionsListener
     private GalleryAdapter adapterGallery;
     private FragmentTransaction ft;
     private GridView listItem;
+    private View view;;
+    String nomeMateria;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.content_gallery, container, false);
+       view = inflater.inflate(R.layout.content_gallery, container, false);
+        return view;
 
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        final String nomeMateria = getArguments().getString("nome_materia");
+        nomeMateria = getArguments().getString("nome_materia");
         openFABMenu(view, nomeMateria);
-        getDirectoryFiles(view,nomeMateria);
+        getDirectoryFiles();
 
     }
 
@@ -97,20 +102,10 @@ public class GalleryFragment  extends Fragment implements GalleryActionsListener
     }
 
     @Override
-    public void getDirectoryFiles(View view, final String nomeMateria) {
+    public void getDirectoryFiles() {
         ft = getFragmentManager().beginTransaction();
         detailGalleryFragment = new DetailGalleryFragment();
-        File file;
-        String root_sd = Environment.getExternalStorageDirectory().getAbsolutePath();
-
-        file = new File( root_sd +"/Mattercam"+ "/" + nomeMateria) ;
-        final File list[] = file.listFiles();
-
-        listItem = (GridView) view.findViewById(R.id.grid_view);
-
-        adapterGallery = new GalleryAdapter(getActivity(), list);
-        listItem.setAdapter(adapterGallery);
-        listItem.setOnScrollListener(new SampleScrollListener(getActivity()));
+        getAll();
 
         listItem.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -119,7 +114,7 @@ public class GalleryFragment  extends Fragment implements GalleryActionsListener
                 ft.replace(R.id.your_placeholder, detailGalleryFragment);
                 ft.commit();
 
-//                Intent intent = new Intent(getContext(), PageDetailActivity.class);
+                //Intent intent = new Intent(getContext(), PageDetailActivity.class);
 //                //intent.putParcelableArrayListExtra("data", data);
 //                intent.putExtra("position_number", position);
 //                intent.putExtra("nome_materia", nomeMateria);
@@ -137,4 +132,42 @@ public class GalleryFragment  extends Fragment implements GalleryActionsListener
         fragment.setArguments(bundle);
     }
 
+    @Override
+    public void onResume() {
+        getAll();
+        adapterGallery.notifyDataSetChanged();
+        super.onResume();
+
+    }
+
+    @Override
+    public void onPause() {
+        getAll();
+        adapterGallery.notifyDataSetChanged();
+        listItem.smoothScrollToPosition(adapterGallery.getCount());
+        super.onPause();
+
+
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        adapterGallery.notifyDataSetChanged();
+        listItem.smoothScrollToPosition(adapterGallery.getCount());
+        super.onSaveInstanceState(outState);
+    }
+
+    public void getAll() {
+        File file;
+        String root_sd = Environment.getExternalStorageDirectory().getAbsolutePath();
+
+        file = new File( root_sd +"/Mattercam"+ "/" + nomeMateria) ;
+        final File list[] = file.listFiles();
+
+        listItem = (GridView) view.findViewById(R.id.grid_view);
+
+        adapterGallery = new GalleryAdapter(getActivity(), list);
+        listItem.setAdapter(adapterGallery);
+        listItem.setOnScrollListener(new SampleScrollListener(getActivity()));
+    }
 }
