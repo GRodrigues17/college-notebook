@@ -8,20 +8,24 @@ public class Matter {
     private String title;
     private String instructor;
     private String folder;
-    private int like;
     private String date;
+    private int color;
+    private int like;
+
 
 public Matter(){
 
 }
 
-    public Matter(long id, String title, String instructor, String folder,String date,int like) {
+    public Matter(long id, String title, String instructor, String folder,String date, int like,int color) {
         this.id = id;
         this.title = title;
         this.instructor = instructor;
         this.folder = folder;
-        this.like = like;
         this.date = date;
+        this.like = like;
+        this.color = color;
+
 
     }
 
@@ -83,5 +87,13 @@ public Matter(){
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
     }
 }

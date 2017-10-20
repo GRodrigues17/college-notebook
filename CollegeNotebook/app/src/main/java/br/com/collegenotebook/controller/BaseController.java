@@ -44,6 +44,7 @@ public class BaseController {
             values.put(BaseDAO.MATTER_FOLDER, matter.getFolder());
             values.put(BaseDAO.MATTER_DATE, matter.getDate());
             values.put(BaseDAO.MATTER_LIKE, matter.getLike());
+            values.put(BaseDAO.MATTER_COLOR, matter.getColor());
 
             boolean createSuccessful = db.insert(BaseDAO.TABLE_MATTER, null, values) > 0;
             close();
@@ -65,7 +66,8 @@ public class BaseController {
                         cursorSubject.getString(cursorSubject.getColumnIndex(BaseDAO.MATTER_INSTRUCTOR)),
                         cursorSubject.getString(cursorSubject.getColumnIndex(BaseDAO.MATTER_FOLDER)),
                         cursorSubject.getString(cursorSubject.getColumnIndex(BaseDAO.MATTER_DATE)),
-                        cursorSubject.getInt(cursorSubject.getColumnIndex(BaseDAO.MATTER_LIKE)));
+                        cursorSubject.getInt(cursorSubject.getColumnIndex(BaseDAO.MATTER_LIKE)),
+                        cursorSubject.getInt(cursorSubject.getColumnIndex(BaseDAO.MATTER_COLOR)));
                 matters.add(user);
 
             }

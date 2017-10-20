@@ -31,9 +31,27 @@
         android:layout_below="@+id/edt_subject_name"
         android:imeOptions="actionDone" />
 
+    <br.com.collegenotebook.view.Customs.MontserratLightTextView
+        android:id="@+id/txtNotebookColor"
+        android:layout_width="wrap_content"
+        android:textSize="12dp"
+        android:layout_margin="10dp"
+        android:layout_below="@+id/edt_professor_name"
+        android:textColor="@color/colorText"
+        android:layout_height="wrap_content"
+        android:text="Marcador:"/>
+
+    <View android:id="@+id/viewMarker"
+        android:layout_width="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorPrimary"
+        android:layout_toRightOf="@+id/txtNotebookColor"
+        android:layout_below="@+id/edt_professor_name"
+        android:layout_height="20dp"/>
+
     <include layout="@layout/dialog_buttons"
         android:layout_width="match_parent"
-        android:layout_below="@+id/edt_professor_name"
+        android:layout_below="@+id/txtNotebookColor"
         android:layout_marginTop="10dp"
         android:layout_height="wrap_content"/>
 

@@ -28,7 +28,7 @@ public class SplashActivity extends Activity {
 
     private void mostrarLogin() {
         Intent intent = new Intent(SplashActivity.this,
-                MainActivity.class);
+                LoginActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         finish();

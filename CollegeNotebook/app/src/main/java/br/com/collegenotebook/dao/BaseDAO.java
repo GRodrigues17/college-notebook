@@ -18,6 +18,7 @@ public class BaseDAO extends SQLiteOpenHelper {
     public static final String MATTER_FOLDER = "folder";
     public static final String MATTER_DATE = "date";
     public static final String MATTER_LIKE = "like";
+    public static final String MATTER_COLOR = "color";
 
     public static final String TABLE_USER = "userCrud";
     public static final String ID_USER = "_id";
@@ -28,11 +29,18 @@ public class BaseDAO extends SQLiteOpenHelper {
     public static final String USER_LOCALE = "userLocale";
     public static final String USER_SITE = "userSite";
 
+    public static final String TABLE_COMMENT = "commentCrud";
+    public static final String ID_COMMENT= "_id";
+    public static final String COMMENT_TEXT = "commentText";
+    public static final String COMMENT_DATE = "commentDate";
 
 
+    public static final String TABLE_IMAGE= "imageCrud";
+    public static final String ID_IMAGE= "_id";
+    public static final String IMAGE_URL = "commentText";
 
     public static final String DATABASE_NAME = "database.db";
-    public static final int DATABASE_VERSION =7;
+    public static final int DATABASE_VERSION =13;
 
     public static final String sqlSubject = "create table " + TABLE_MATTER + "(" +
             ID			+ " integer primary key autoincrement, " +
@@ -40,17 +48,29 @@ public class BaseDAO extends SQLiteOpenHelper {
             MATTER_INSTRUCTOR		+ " text not null," +
             MATTER_FOLDER		+ " text not null," +
             MATTER_DATE         + " text not null," +
-            MATTER_LIKE         + " integer"
+            MATTER_LIKE         + " integer," +
+            MATTER_COLOR       + " integer"
             +")";
 
     public static final String sqlUser = "create table " + TABLE_USER + "(" +
-            ID	+ " integer primary key autoincrement, " +
+            ID_USER	+ " integer primary key autoincrement, " +
             USER_EMAIL		+ " text not null," +
             USER_PASSWORD		+ " text not null," +
             USER_NAME		+ " text not null," +
             USER_PHOTO		+ " text not null,"+
             USER_LOCALE     + " text not null,"+
             USER_SITE       + " text not null"
+            +")";
+
+    public static final String sqlImage = "create table " + TABLE_IMAGE + "(" +
+            ID_IMAGE	+ " integer primary key autoincrement, " +
+            IMAGE_URL     + " text not null"
+            +")";
+
+    public static final String sqlComment = "create table " + TABLE_COMMENT + "(" +
+            ID_COMMENT	+ " integer primary key autoincrement, " +
+            COMMENT_TEXT     + " text not null,"+
+            COMMENT_DATE     + " text not null"
             +")";
 
 
@@ -62,6 +82,9 @@ public class BaseDAO extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase database) {
         database.execSQL(sqlSubject);
         database.execSQL(sqlUser);
+        database.execSQL(sqlImage);
+        database.execSQL(sqlComment);
+
         System.out.println("passou no " + this.toString());
     }
 
@@ -69,6 +92,8 @@ public class BaseDAO extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
         database.execSQL("DROP TABLE IF EXISTS " + TABLE_MATTER);
         database.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
+        database.execSQL("DROP TABLE IF EXISTS " + TABLE_IMAGE);
+        database.execSQL("DROP TABLE IF EXISTS " + TABLE_COMMENT);
         onCreate(database);
     }
 

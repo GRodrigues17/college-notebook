@@ -119,23 +119,22 @@ public class MatterAdapter extends BaseAdapter {
             }
             holder.txtMateria.setText(matter.getTitle());
             holder.txtProfessor.setText(matter.getInstructor());
-            holder.viewColor.setBackgroundResource(R.color.colorPrimary);
+            holder.viewColor.setBackgroundColor(matter.getColor());
             holder.dateCreated.setText(matter.getDate());
 
 
 
             holder.viewIconFav.setOnLikeListener(new OnLikeListener() {
                 @Override
-                public void liked(LikeButton likeButton) {
-                    matter.setLike(1);
+                public void liked(LikeButton likeButton) {matter.setLike(1);
                     controller.isLike(1,matter.getId());
                     notifyDataSetChanged();
                 }
 
                 @Override
                 public void unLiked(LikeButton likeButton) {
-                    controller.isLike(0,matter.getId());
                     matter.setLike(0);
+                    controller.isLike(0,matter.getId());
                     notifyDataSetChanged();
                 }
 
