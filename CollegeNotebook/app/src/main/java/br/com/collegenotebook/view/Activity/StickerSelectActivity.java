@@ -1,5 +1,6 @@
 package br.com.collegenotebook.view.Activity;
 
+import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.collegenotebook.R;
+import br.com.collegenotebook.view.Fragment.NewMateriaDialog;
 
 
 /**
@@ -33,42 +35,12 @@ public class StickerSelectActivity extends AppCompatActivity {
     public static final String EXTRA_STICKER_ID = "extra_sticker_id";
 
     private final int[] stickerIds = {
-            R.drawable.abra,
-            R.drawable.bellsprout,
-            R.drawable.bracelet,
-            R.drawable.bullbasaur,
-            R.drawable.camera,
-            R.drawable.candy,
-            R.drawable.caterpie,
-            R.drawable.charmander,
-            R.drawable.mankey,
-            R.drawable.map,
-            R.drawable.mega_ball,
-            R.drawable.meowth,
-            R.drawable.pawprints,
-            R.drawable.pidgey,
-            R.drawable.pikachu,
-            R.drawable.pikachu_1,
-            R.drawable.pikachu_2,
-            R.drawable.player,
-            R.drawable.pointer,
-            R.drawable.pokebag,
-            R.drawable.pokeball,
-            R.drawable.pokeballs,
-            R.drawable.pokecoin,
-            R.drawable.pokedex,
-            R.drawable.potion,
-            R.drawable.psyduck,
-            R.drawable.rattata,
-            R.drawable.revive,
-            R.drawable.squirtle,
-            R.drawable.star,
-            R.drawable.star_1,
-            R.drawable.superball,
-            R.drawable.tornado,
-            R.drawable.venonat,
-            R.drawable.weedle,
-            R.drawable.zubat
+            R.drawable.ic_marker_red,
+            R.drawable.ic_marker_green,
+            R.drawable.ic_marker_yellow,
+            R.drawable.ic_marker_fav,
+            R.drawable.ic_marker_nice,
+            R.drawable.ic_marker_idea
     };
 
     @Override
@@ -149,7 +121,7 @@ public class StickerSelectActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         int pos = getAdapterPosition();
-                        if (pos >= 0) { // might be NO_POSITION
+                        if (pos >= 0) { // might be NO_POSITIO
                             onStickerSelected(getItem(pos));
                         }
                     }

@@ -1,5 +1,6 @@
 package br.com.collegenotebook.widget.entity;
 
+
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
@@ -10,7 +11,6 @@ import android.support.annotation.Nullable;
 
 import br.com.collegenotebook.utility.MathUtils;
 import br.com.collegenotebook.view.viewmodel.Layer;
-import br.com.collegenotebook.view.viewmodel.TextLayer;
 
 @SuppressWarnings({"WeakerAccess"})
 public abstract class MotionEntity {
@@ -230,7 +230,7 @@ public abstract class MotionEntity {
 
     @NonNull
     public Layer getLayer() {
-        return (Layer) layer;
+        return layer;
     }
 
     public void setBorderPaint(@NonNull Paint borderPaint) {

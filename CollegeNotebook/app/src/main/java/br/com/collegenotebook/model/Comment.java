@@ -5,9 +5,13 @@ package br.com.collegenotebook.model;
  */
 
 public class Comment {
-
     String comment;
     String date;
+
+    public Comment(){
+
+    }
+
 
     public Comment(String comment, String date) {
         this.comment = comment;

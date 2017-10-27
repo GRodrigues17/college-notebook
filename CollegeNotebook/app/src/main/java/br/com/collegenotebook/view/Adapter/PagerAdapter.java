@@ -39,7 +39,14 @@ public class PagerAdapter  extends SmartFragmentStatePagerAdapter {
     // Returns the page title for the top indicator
     @Override
     public CharSequence getPageTitle(int position) {
-        return "Page " + position;
+        CharSequence title = null;
+        if (position==0){
+            title= "Notebooks ";
+        }
+        if (position==1){
+            title= "To Do ";
+        }
+       return title;
     }
 
     @Override

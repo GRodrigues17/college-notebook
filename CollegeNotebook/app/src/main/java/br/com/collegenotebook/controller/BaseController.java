@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.collegenotebook.dao.BaseDAO;
+import br.com.collegenotebook.model.Comment;
 import br.com.collegenotebook.model.Matter;
 import br.com.collegenotebook.model.User;
 
@@ -136,5 +137,16 @@ public class BaseController {
         close();
     }
 
+
+    public boolean insertComment(Comment comment) {
+            ContentValues values = new ContentValues();
+            values.put(BaseDAO.COMMENT_DATE, comment.getDate());
+            values.put(BaseDAO.COMMENT_TEXT, comment.getComment());
+
+
+            boolean postCommentSuccessful = db.insert(BaseDAO.TABLE_COMMENT, null, values) > 0;
+            close();
+            return postCommentSuccessful;
+    }
 
 }

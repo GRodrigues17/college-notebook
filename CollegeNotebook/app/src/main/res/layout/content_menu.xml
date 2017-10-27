@@ -44,7 +44,7 @@
 
     <ImageView
         android:clickable="true"
-        android:id="@+id/calendar"
+        android:id="@+id/support"
         android:src="@mipmap/ic_book_open_page_variant_grey600_48dp"
         android:layout_width="25dp"
         android:layout_height="25dp"

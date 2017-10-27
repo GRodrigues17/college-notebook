@@ -23,7 +23,7 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-import br.com.collegenotebook.CreateDirectoryListener;
+import br.com.collegenotebook.listener.CreateDirectoryListener;
 import br.com.collegenotebook.R;
 import br.com.collegenotebook.controller.NotebookController;
 import br.com.collegenotebook.view.Fragment.AlbumEmptyFragment;
@@ -47,10 +47,11 @@ public class GalleryActivity extends AppCompatActivity implements CreateDirector
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarGallery);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -168,12 +169,12 @@ public class GalleryActivity extends AppCompatActivity implements CreateDirector
         picsDir =  notebookController.criaDiretorio(nomeMateria);
         File imageFile = new File(picsDir, System.currentTimeMillis() + ".jpg");
         uri = Uri.fromFile(imageFile);
-        Intent i = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        i.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-
-        if (i.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(i, REQUEST_IMAGE_CAPTURE);
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
+
 
 
     }

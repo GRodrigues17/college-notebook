@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PointF;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,11 +19,17 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.collegenotebook.EditNameDialogListener;
 import br.com.collegenotebook.R;
+import br.com.collegenotebook.model.Matter;
+import br.com.collegenotebook.view.Fragment.NewMateriaDialog;
+import br.com.collegenotebook.widget.entity.ImageEntity;
 import br.com.collegenotebook.widget.entity.MotionEntity;
 import multitouch.MoveGestureDetector;
 import multitouch.RotateGestureDetector;
@@ -32,12 +39,15 @@ import multitouch.RotateGestureDetector;
  * Created on 9/29/16.
  */
 
-public class MotionView extends FrameLayout {
+public class MotionView extends android.support.v7.widget.AppCompatImageView{
 
     private static final String TAG = MotionView.class.getSimpleName();
+    private ImageView imgErase;
+
+
 
     public interface Constants {
-        float SELECTED_LAYER_ALPHA = 0.15F;
+        float SELECTED_LAYER_ALPHA = 0.90F;
     }
 
     public interface MotionViewCallback {
@@ -81,7 +91,7 @@ public class MotionView extends FrameLayout {
     @SuppressWarnings("unused")
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public MotionView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
+        super(context);
         init(context);
     }
 
@@ -92,6 +102,7 @@ public class MotionView extends FrameLayout {
         selectedLayerPaint = new Paint();
         selectedLayerPaint.setAlpha((int) (255 * Constants.SELECTED_LAYER_ALPHA));
         selectedLayerPaint.setAntiAlias(true);
+        imgErase = (ImageView) findViewById(R.id.imgErase);
 
         // init listeners
         this.scaleGestureDetector = new ScaleGestureDetector(context, new ScaleListener());
@@ -130,6 +141,7 @@ public class MotionView extends FrameLayout {
             entities.add(entity);
             selectEntity(entity, true);
         }
+
     }
 
     private void initEntityBorder(@NonNull MotionEntity entity ) {
@@ -138,7 +150,7 @@ public class MotionView extends FrameLayout {
         Paint borderPaint = new Paint();
         borderPaint.setStrokeWidth(strokeSize);
         borderPaint.setAntiAlias(true);
-        borderPaint.setColor(ContextCompat.getColor(getContext(), R.color.stroke_color));
+        borderPaint.setColor(ContextCompat.getColor(getContext(), R.color.colorAccent));
 
         entity.setBorderPaint(borderPaint);
     }
@@ -190,6 +202,7 @@ public class MotionView extends FrameLayout {
     }
 
     private void updateUI() {
+        //imgErase.setVisibility(View.VISIBLE);
         invalidate();
     }
 
@@ -316,8 +329,7 @@ public class MotionView extends FrameLayout {
 
     // gesture detectors
 
-    private final OnTouchListener onTouchListener = new OnTouchListener() {
-
+    private final View.OnTouchListener onTouchListener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View v, MotionEvent event) {
             if (scaleGestureDetector != null) {
@@ -325,6 +337,7 @@ public class MotionView extends FrameLayout {
                 rotateGestureDetector.onTouchEvent(event);
                 moveGestureDetector.onTouchEvent(event);
                 gestureDetectorCompat.onTouchEvent(event);
+
             }
             return true;
         }
@@ -381,4 +394,6 @@ public class MotionView extends FrameLayout {
             return true;
         }
     }
+
+
 }

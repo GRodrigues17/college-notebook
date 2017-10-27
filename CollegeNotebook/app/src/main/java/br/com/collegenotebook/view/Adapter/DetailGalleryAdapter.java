@@ -1,19 +1,20 @@
 package br.com.collegenotebook.view.Adapter;
 
 import android.content.Context;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.view.*;
 import android.support.v4.view.PagerAdapter;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
 
 import br.com.collegenotebook.R;
-import br.com.collegenotebook.view.Activity.PageDetailActivity;
 import br.com.collegenotebook.view.Fragment.PageDetailFragment;
 import br.com.collegenotebook.view.Fragment.SmartFragmentStatePagerAdapter;
 
@@ -56,3 +57,4 @@ public class DetailGalleryAdapter extends SmartFragmentStatePagerAdapter {
         return 1.00f;
     }
 }
+

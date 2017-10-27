@@ -23,38 +23,6 @@
         android:fitsSystemWindows="true"
         android:listSelector="@drawable/rect_button"/>
 
-    <com.github.clans.fab.FloatingActionMenu
-        android:id="@+id/menu_red"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:paddingRight="10dp"
-        android:paddingBottom="10dp"
-        android:paddingLeft="10dp"
-        fab:menu_labels_ellipsize="end"
-        fab:menu_labels_singleLine="true"
-        fab:menu_backgroundColor="@android:color/transparent"
-        fab:menu_colorNormal="@color/colorAccent"
-        fab:menu_colorPressed="#E91E63"
-        fab:menu_colorRipple="@android:color/transparent"
-        fab:fab_elevationCompat="6dp"
-        fab:menu_fab_label="Menu">
-
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/fab1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_menu_camera"
-            fab:fab_size="mini"
-            fab:fab_colorNormal="@color/colorButton"
-            fab:fab_colorPressed="@color/colorButtonPressed"
-            fab:fab_colorRipple="@color/colorButtonRipple"
-            fab:fab_label="New Picture" />
-
-
-    </com.github.clans.fab.FloatingActionMenu>
-
 
 
 </RelativeLayout>

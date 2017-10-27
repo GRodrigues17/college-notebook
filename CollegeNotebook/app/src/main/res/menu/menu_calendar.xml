@@ -2,8 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/newCalendar"
+        app:showAsAction="always"
+        android:icon="@mipmap/ic_calendar_clock"
+        android:title="New Task" />
+    <item
         android:id="@+id/newTask"
         app:showAsAction="always"
         android:icon="@mipmap/ic_calendar_plus"
         android:title="New Task" />
+
 </menu>

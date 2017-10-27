@@ -11,24 +11,20 @@ import android.support.v7.widget.Toolbar;
 import android.view.ContextMenu;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.Toast;
 
-import java.util.List;
-
-import br.com.collegenotebook.CreateDirectoryListener;
+import br.com.collegenotebook.listener.CreateDirectoryListener;
 import br.com.collegenotebook.EditNameDialogListener;
 import br.com.collegenotebook.R;
 import br.com.collegenotebook.controller.BaseController;
 import br.com.collegenotebook.controller.NotebookController;
 import br.com.collegenotebook.model.Matter;
-import br.com.collegenotebook.view.Adapter.MatterAdapter;
 import br.com.collegenotebook.view.Fragment.CalendarFragment;
 import br.com.collegenotebook.view.Fragment.NotebookEmptyFragment;
 import br.com.collegenotebook.view.Fragment.NewMateriaDialog;
 import br.com.collegenotebook.view.Fragment.NotebookFragment;
 import br.com.collegenotebook.view.Fragment.ProfileFragment;
-import br.com.collegenotebook.view.Fragment.TimeSheetFragment;
+import br.com.collegenotebook.view.Fragment.SupportFragment;
 
 public class MainActivity extends AppCompatActivity implements EditNameDialogListener,CreateDirectoryListener,View.OnClickListener{
 
@@ -41,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements EditNameDialogLis
     private ImageView profile;
     private ImageView add;
 
-    private TimeSheetFragment timeSheetFragment;
+    private SupportFragment supportFragment;
     private CalendarFragment calendarFragment;
     private ProfileFragment profileFragment;
     private NotebookFragment notebookFragment;
@@ -55,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements EditNameDialogLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarMain);
         setSupportActionBar(toolbar);
         baseController = new BaseController(this);
         notebookController = new NotebookController(this);
@@ -71,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements EditNameDialogLis
 
         home = (ImageView) findViewById(R.id.home);
         timeSheet = (ImageView) findViewById(R.id.timesheet);
-        calendar = (ImageView) findViewById(R.id.calendar);
+        calendar = (ImageView) findViewById(R.id.support);
         profile = (ImageView) findViewById(R.id.profile);
         add = (ImageView) findViewById(R.id.add);
 
@@ -147,13 +143,13 @@ public class MainActivity extends AppCompatActivity implements EditNameDialogLis
                 showNotebooks();
                 break;
             case R.id.timesheet:
-                showTimesheet();
+                showCalendar();
                 break;
             case R.id.add:
                 showDialog();
                 break;
-            case R.id.calendar:
-                showCalendar();
+            case R.id.support:
+                showTimesheet();
                 break;
             case R.id.profile:
                 showProfile();
@@ -175,10 +171,10 @@ public class MainActivity extends AppCompatActivity implements EditNameDialogLis
 
 
     public void showTimesheet(){
-        timeSheetFragment =  new TimeSheetFragment();
+        supportFragment =  new SupportFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.fragmentDisplay, timeSheetFragment);
+        transaction.replace(R.id.fragmentDisplay, supportFragment);
         transaction.addToBackStack(null);
         transaction.commit();
 

@@ -1,31 +1,46 @@
 package br.com.collegenotebook.view.Activity;
 
+
+import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.PixelFormat;
+import android.graphics.Point;
 import android.graphics.PointF;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.flask.colorpicker.ColorPickerView;
 import com.flask.colorpicker.builder.ColorPickerClickListener;
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
+import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.List;
 
 import br.com.collegenotebook.BuildConfig;
 import br.com.collegenotebook.R;
+import br.com.collegenotebook.controller.BaseController;
+import br.com.collegenotebook.listener.EditCommentDialogListener;
+import br.com.collegenotebook.model.Comment;
 import br.com.collegenotebook.utility.FontProvider;
 import br.com.collegenotebook.view.Adapter.FontsAdapter;
+import br.com.collegenotebook.view.Fragment.NewCommentDialog;
+import br.com.collegenotebook.view.Fragment.NewMateriaDialog;
 import br.com.collegenotebook.view.Fragment.TextEditorDialogFragment;
 import br.com.collegenotebook.view.viewmodel.Font;
 import br.com.collegenotebook.view.viewmodel.Layer;
@@ -35,15 +50,20 @@ import br.com.collegenotebook.widget.entity.ImageEntity;
 import br.com.collegenotebook.widget.entity.MotionEntity;
 import br.com.collegenotebook.widget.entity.TextEntity;
 
-public class CommentActivity extends AppCompatActivity implements TextEditorDialogFragment.OnTextLayerCallback {
+public class CommentActivity extends AppCompatActivity implements TextEditorDialogFragment.OnTextLayerCallback, EditCommentDialogListener{
+    private int position;
+    private String nomeMateria;
 
     public static final int SELECT_STICKER_REQUEST_CODE = 123;
+    private Bitmap pica;
     protected MotionView motionView;
+    private BaseController baseController;
     protected View textEntityEditPanel;
 
     private final MotionView.MotionViewCallback motionViewCallback = new MotionView.MotionViewCallback() {
         @Override
         public void onEntitySelected(@Nullable MotionEntity entity) {
+
             if (entity instanceof TextEntity) {
                 textEntityEditPanel.setVisibility(View.VISIBLE);
             } else {
@@ -53,40 +73,51 @@ public class CommentActivity extends AppCompatActivity implements TextEditorDial
 
         @Override
         public void onEntityDoubleTap(@NonNull MotionEntity entity) {
+            NewCommentDialog dialog = new NewCommentDialog();
+            dialog.show(getSupportFragmentManager(), "commentDialogFragment");
             startTextEntityEditing();
         }
     };
     private FontProvider fontProvider;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        this.fontProvider = new FontProvider(getResources());
-        
-        motionView = (MotionView) findViewById(R.id.main_motion_view);
-        Layer layer = new Layer();
-        Uri picsDir = (Uri) savedInstanceState.get("uri");
-        Bitmap mImageBitmap = BitmapFactory.decodeFile(String.valueOf(picsDir));
-        ImageEntity entity = new ImageEntity(layer, mImageBitmap, motionView.getWidth(), motionView.getHeight());
+        setContentView(R.layout.activity_comment);
+        baseController = new BaseController(this);
+        position = getIntent().getIntExtra("position_number", 0);
+        nomeMateria = getIntent().getStringExtra("nome_materia");
 
+        File file;
+        String root_sd = Environment.getExternalStorageDirectory().getAbsolutePath();
+        file = new File( root_sd +"/Mattercam"+ "/" + nomeMateria) ;
+        File list[] = file.listFiles();
+        motionView = (MotionView) findViewById(R.id.main_motion_view);
+        if(list[position].exists()){
+            Picasso.with(this)
+                    .load(list[position]) // load minha lista de arquivos
+                    .placeholder(R.drawable.placeholder) //uma tipo de load
+                    .error(R.drawable.error)
+                    .fit()
+                    .centerInside()
+                    .tag(this)
+                    .into(motionView);
+        }
+
+        fontProvider = new FontProvider(getResources());
         textEntityEditPanel = findViewById(R.id.main_motion_text_entity_edit_panel);
         motionView.setMotionViewCallback(motionViewCallback);
-
-        addSticker(R.drawable.pikachu_2);
-
         initTextEntitiesListeners();
     }
+
 
     private void addSticker(final int stickerResId) {
         motionView.post(new Runnable() {
             @Override
             public void run() {
                 Layer layer = new Layer();
-                Bitmap pica = BitmapFactory.decodeResource(getResources(), stickerResId);
-
+                pica = BitmapFactory.decodeResource(getResources(),stickerResId);
                 ImageEntity entity = new ImageEntity(layer, pica, motionView.getWidth(), motionView.getHeight());
-
                 motionView.addEntityAndPosition(entity);
             }
         });
@@ -134,15 +165,6 @@ public class CommentActivity extends AppCompatActivity implements TextEditorDial
         }
     }
 
-    private void decreaseTextEntitySize() {
-        TextEntity textEntity = currentTextEntity();
-        if (textEntity != null) {
-            textEntity.getLayer().getFont().decreaseSize(TextLayer.Limits.FONT_SIZE_STEP);
-            textEntity.updateEntity();
-            motionView.invalidate();
-        }
-    }
-
     private void changeTextEntityColor() {
         TextEntity textEntity = currentTextEntity();
         if (textEntity == null) {
@@ -175,6 +197,15 @@ public class CommentActivity extends AppCompatActivity implements TextEditorDial
                 })
                 .build()
                 .show();
+    }
+
+    private void decreaseTextEntitySize() {
+        TextEntity textEntity = currentTextEntity();
+        if (textEntity != null) {
+            textEntity.getLayer().getFont().decreaseSize(TextLayer.Limits.FONT_SIZE_STEP);
+            textEntity.updateEntity();
+            motionView.invalidate();
+        }
     }
 
     private void changeTextEntityFont() {
@@ -293,4 +324,13 @@ public class CommentActivity extends AppCompatActivity implements TextEditorDial
             }
         }
     }
+
+
+    @Override
+    public void onFinishEditDialog(Comment comment) {
+        baseController.open();
+        baseController.insertComment(comment);
+        baseController.close();
+    }
 }
+
